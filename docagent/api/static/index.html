@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DocAgent: analyst for SEC filings</title>
+<style>
+  :root { --ink:#1b1f24; --muted:#5b6470; --line:#e3e6ea; --accent:#1f5fbf; --ok:#1e7d4f; --warn:#a15c00; --bg:#f7f8fa; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; color:var(--ink); background:var(--bg); }
+  header { background:#fff; border-bottom:1px solid var(--line); padding:18px 24px; }
+  header h1 { margin:0; font-size:20px; } header p { margin:4px 0 0; color:var(--muted); }
+  main { max-width:960px; margin:24px auto; padding:0 16px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:10px; padding:18px; margin-bottom:16px; }
+  textarea { width:100%; min-height:84px; font:inherit; padding:10px; border:1px solid var(--line); border-radius:8px; resize:vertical; }
+  .row { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:10px; }
+  input[type=password] { flex:1; min-width:220px; padding:8px 10px; border:1px solid var(--line); border-radius:8px; font:inherit; }
+  select, button { padding:8px 14px; border-radius:8px; border:1px solid var(--line); font:inherit; background:#fff; }
+  button.primary { background:var(--accent); color:#fff; border-color:var(--accent); cursor:pointer; }
+  button:disabled { opacity:.6; cursor:wait; }
+  .answer { font-size:17px; white-space:pre-wrap; }
+  .meta { color:var(--muted); font-size:13px; margin-top:8px; }
+  .badge { display:inline-block; padding:2px 8px; border-radius:999px; font-size:12px; font-weight:600; }
+  .answered { background:#e6f4ec; color:var(--ok); } .refused { background:#fff3e0; color:var(--warn); } .error { background:#fde8e8; color:#a12; }
+  .cite { border-left:3px solid var(--accent); padding:6px 10px; margin:8px 0; background:#f9fbff; }
+  .cite b { font-size:13px; } .cite pre { white-space:pre-wrap; margin:6px 0 0; font:12px/1.45 ui-monospace,Consolas,monospace; max-height:160px; overflow:auto; }
+  details summary { cursor:pointer; color:var(--accent); }
+  .trace li { font:12px/1.5 ui-monospace,Consolas,monospace; }
+  .ex { cursor:pointer; padding:8px 10px; border-radius:8px; } .ex:hover { background:#f0f4fb; }
+  .muted { color:var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <h1>DocAgent</h1>
+  <p>Agentic RAG over SEC filings: a LangGraph agent with MCP tools, hybrid retrieval and citation guardrails.</p>
+</header>
+<main>
+  <div class="card">
+    <textarea id="q" placeholder="e.g. What is the FY2018 capital expenditure amount (in USD millions) for 3M?"></textarea>
+    <div class="row">
+      <select id="mode"><option value="agent">DocAgent (agentic)</option><option value="baseline">Plain RAG baseline</option></select>
+      <input id="key" type="password" placeholder="API key (X-API-Key), required for live questions">
+      <button class="primary" id="go">Ask</button>
+    </div>
+    <div class="meta" id="status"></div>
+  </div>
+  <div id="result"></div>
+  <div class="card">
+    <h3 style="margin-top:0">Precomputed FinanceBench examples</h3>
+    <p class="muted">Answers recorded during the evaluation run; no API key needed.</p>
+    <div id="examples" class="muted">Loading...</div>
+  </div>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+$("key").value = localStorage.getItem("docagent_key") || "";
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function render(r) {
+  const cites = (r.citations || []).map(c => `<div class="cite"><b>${esc(c.doc_name)} &middot; page ${esc(c.page)}</b>
+      <span class="muted"> (${esc(c.evidence_id)})</span><pre>${esc(c.text)}</pre></div>`).join("");
+  const trace = (r.trace || []).map(t => `<li>${esc(t.tool)}(${esc(JSON.stringify(t.input))})${t.is_error ? " &rarr; error" : ""}</li>`).join("");
+  const u = r.usage || {};
+  $("result").innerHTML = `<div class="card">
+    <span class="badge ${esc(r.status)}">${esc(r.status)}</span>
+    <div class="answer" style="margin-top:10px">${esc(r.answer)}</div>
+    ${r.calculation ? `<div class="meta">Calculation: ${esc(r.calculation)}</div>` : ""}
+    <div class="meta">${r.seconds ?? "?"} s &middot; ${r.tool_calls ?? 0} tool calls &middot; $${(u.cost_usd ?? 0).toFixed(3)}</div>
+    ${cites ? `<h4>Evidence</h4>${cites}` : ""}
+    ${trace ? `<details><summary>Tool trace</summary><ol class="trace">${trace}</ol></details>` : ""}
+  </div>`;
+}
+
+$("go").onclick = async () => {
+  const question = $("q").value.trim(); if (!question) return;
+  localStorage.setItem("docagent_key", $("key").value);
+  $("go").disabled = true; $("status").textContent = "Researching the filings... (agent runs take 30-90 s)";
+  try {
+    const res = await fetch("/ask", {method:"POST", headers:{"Content-Type":"application/json","X-API-Key":$("key").value},
+                                     body: JSON.stringify({question, mode:$("mode").value})});
+    const body = await res.json();
+    if (!res.ok) throw new Error(body.detail || res.statusText);
+    render(body); $("status").textContent = "";
+  } catch (e) { $("status").textContent = "Error: " + e.message; }
+  finally { $("go").disabled = false; }
+};
+
+fetch("/examples").then(r => r.json()).then(list => {
+  if (!list.length) { $("examples").textContent = "No examples recorded yet."; return; }
+  $("examples").innerHTML = list.map((e, i) => `<div class="ex" data-i="${i}"><b>${esc(e.question)}</b>
+      <div class="muted">gold: ${esc(e.gold_answer)} &middot; graded ${esc(e.grade)}</div></div>`).join("");
+  document.querySelectorAll(".ex").forEach(el => el.onclick = () => { const e = list[el.dataset.i]; $("q").value = e.question; render(e); });
+}).catch(() => $("examples").textContent = "Could not load examples.");
+</script>
+</body>
+</html>

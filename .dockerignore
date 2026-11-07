@@ -1,0 +1,14 @@
+.venv
+.git
+.env
+*.env
+__pycache__
+.pytest_cache
+data/pdfs
+data/index/faiss.index
+results/runs
+tests
+build_stdout.txt
+results_select_stdout.txt
+docker_build.log
+*.log

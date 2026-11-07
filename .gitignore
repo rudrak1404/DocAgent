@@ -1,0 +1,20 @@
+# secrets
+.env
+*.env
+
+# environments / caches
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# data: FinanceBench PDFs are downloaded by `python -m docagent.data`, never committed
+data/pdfs/
+data/parsed/
+data/index/
+build_stdout.txt
+results_select_stdout.txt
+results/runs/*.log
+data/financebench/
+docker_build.log
+*.log

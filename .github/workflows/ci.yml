@@ -1,0 +1,21 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install (CPU PyTorch)
+        run: |
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements-deploy.txt pytest httpx rank-bm25
+      - name: Unit tests (offline: fake models and a scripted fake LLM, no API calls)
+        run: python -m pytest -q
