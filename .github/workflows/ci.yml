@@ -17,5 +17,5 @@ jobs:
         run: |
           pip install torch --index-url https://download.pytorch.org/whl/cpu
           pip install -r requirements-deploy.txt pytest httpx rank-bm25
-      - name: Unit tests (offline: fake models and a scripted fake LLM, no API calls)
+      - name: "Unit tests (offline: fake models and a scripted fake LLM, no API calls)"
         run: python -m pytest -q
