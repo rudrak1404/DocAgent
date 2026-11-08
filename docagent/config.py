@@ -35,7 +35,16 @@ EMBED_QUERY_PREFIX = "Represent this sentence for searching relevant passages: "
 CHUNK_TOKENS = int(os.getenv("DOCAGENT_CHUNK_TOKENS", 350))
 CHUNK_OVERLAP = int(os.getenv("DOCAGENT_CHUNK_OVERLAP", 60))
 
-# LLM (Claude via the official Anthropic SDK)
+# LLM provider: "ollama" (free, local open-weight model) or "anthropic" (Claude API)
+LLM_PROVIDER = os.getenv("DOCAGENT_LLM_PROVIDER", "ollama")
+OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://127.0.0.1:11434")
+LOCAL_MODEL = os.getenv("DOCAGENT_LOCAL_MODEL", "bonsai-2:9b")
+LOCAL_JUDGE_MODEL = os.getenv("DOCAGENT_LOCAL_JUDGE_MODEL", "qwen3:8b")
+LOCAL_JUDGE_CONTEXT = int(os.getenv("DOCAGENT_LOCAL_JUDGE_CONTEXT", 8192))     # fits fully on an 8 GB GPU
+LOCAL_CONTEXT = int(os.getenv("DOCAGENT_LOCAL_CONTEXT", 32768))   # Bonsai-2 (hybrid attention): 3.8 GB
+LOCAL_RESULT_CHARS = int(os.getenv("DOCAGENT_LOCAL_RESULT_CHARS", 9000))   # tool-result budget
+
+# LLM (Claude via the official Anthropic SDK), used when LLM_PROVIDER=anthropic
 LLM_MODEL = os.getenv("DOCAGENT_LLM_MODEL", "claude-opus-5-5")
 LLM_EFFORT = os.getenv("DOCAGENT_LLM_EFFORT", "high")
 JUDGE_MODEL = os.getenv("DOCAGENT_JUDGE_MODEL", "claude-opus-5-5")

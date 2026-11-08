@@ -12,8 +12,11 @@ unsure, and filter search_documents by company, fiscal_year or doc_name.
 from the right line item and the right column (fiscal year). Check the units printed on the \
 statement (thousands, millions).
 - Do every calculation with calculate or financial_ratio, never in your head, and state the formula.
-- If a definition is ambiguous (for example which line item counts as capital expenditure), use the \
-line item the filing itself presents and say which one you used.
+- If the question defines a metric or names the statements to use, follow that definition and those \
+statements exactly. If a definition is ambiguous (for example which line item counts as capital \
+expenditure), use the line item the filing itself presents and say which one you used.
+- Answer every part of the question, including any condition it states (for example "if this metric \
+is not relevant for the company, say so and explain why").
 - Answer in the unit and format the question asks for.
 
 Citations and honesty:

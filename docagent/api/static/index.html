@@ -47,6 +47,19 @@
   </div>
   <div id="result"></div>
   <div class="card">
+    <h3 style="margin-top:0">Search the filings (live, no LLM)</h3>
+    <div class="row">
+      <input id="sq" type="text" placeholder="e.g. purchases of property, plant and equipment"
+             style="flex:2; min-width:240px; padding:8px 10px; border:1px solid var(--line); border-radius:8px; font:inherit;">
+      <input id="sc" type="text" placeholder="company (optional)"
+             style="flex:1; min-width:140px; padding:8px 10px; border:1px solid var(--line); border-radius:8px; font:inherit;">
+      <input id="sy" type="number" placeholder="fiscal year"
+             style="width:120px; padding:8px 10px; border:1px solid var(--line); border-radius:8px; font:inherit;">
+      <button id="sgo">Search</button>
+    </div>
+    <div id="sres" class="meta"></div>
+  </div>
+  <div class="card">
     <h3 style="margin-top:0">Precomputed FinanceBench examples</h3>
     <p class="muted">Answers recorded during the evaluation run; no API key needed.</p>
     <div id="examples" class="muted">Loading...</div>
@@ -84,6 +97,21 @@ $("go").onclick = async () => {
     render(body); $("status").textContent = "";
   } catch (e) { $("status").textContent = "Error: " + e.message; }
   finally { $("go").disabled = false; }
+};
+
+$("sgo").onclick = async () => {
+  const q = $("sq").value.trim(); if (!q) return;
+  const p = new URLSearchParams({q, top_k: 5});
+  if ($("sc").value.trim()) p.set("company", $("sc").value.trim());
+  if ($("sy").value.trim()) p.set("fiscal_year", $("sy").value.trim());
+  $("sres").textContent = "Searching...";
+  try {
+    const res = await fetch("/search?" + p); const hits = await res.json();
+    if (!res.ok) throw new Error(hits.detail || res.statusText);
+    $("sres").innerHTML = hits.length ? hits.map(h => `<div class="cite"><b>${esc(h.doc_name)} &middot; page ${esc(h.page)}</b>
+        <span class="muted"> ${esc(h.section)} (score ${esc(h.score)})</span><pre>${esc(h.text)}</pre></div>`).join("")
+      : "No passages match these filters.";
+  } catch (e) { $("sres").textContent = "Error: " + e.message; }
 };
 
 fetch("/examples").then(r => r.json()).then(list => {

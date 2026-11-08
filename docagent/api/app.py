@@ -56,7 +56,7 @@ def create_app(index=None, docs=None, llm=None, api_key: str | None = None, with
     from mcp.server.transport_security import TransportSecuritySettings
 
     from docagent.agent.graph import DocAgent
-    from docagent.agent.llm import LLM
+    from docagent.agent.llm import agent_kwargs, make_llm
     from docagent.mcp_server import create_server
 
     if index is None:
@@ -65,7 +65,7 @@ def create_app(index=None, docs=None, llm=None, api_key: str | None = None, with
     if docs is None:
         from docagent.data import load_docs
         docs = load_docs()
-    llm = llm or LLM()
+    llm = llm or make_llm()
     api_key = api_key if api_key is not None else os.getenv("DOCAGENT_API_KEY")
     limiter = RateLimiter(int(os.getenv("DOCAGENT_RATE_PER_MIN", 10)))
 
@@ -75,7 +75,7 @@ def create_app(index=None, docs=None, llm=None, api_key: str | None = None, with
                 TransportSecuritySettings(enable_dns_rebinding_protection=False)
                 if os.getenv("DOCAGENT_PUBLIC") == "1" else None)
     mcp_app = mcp.streamable_http_app(streamable_http_path="/", transport_security=security)
-    agent = DocAgent(mcp, llm)
+    agent = DocAgent(mcp, llm, **agent_kwargs())
     baseline = None
     if with_baseline:
         from docagent.baseline import PlainRAG
@@ -120,8 +120,31 @@ def create_app(index=None, docs=None, llm=None, api_key: str | None = None, with
             return []
         return json.loads(EXAMPLES.read_text(encoding="utf-8"))
 
+    search_limiter = RateLimiter(int(os.getenv("DOCAGENT_SEARCH_PER_MIN", 30)))
+
+    @app.get("/search")
+    async def search(request: Request, q: str, company: str | None = None, fiscal_year: int | None = None,
+                     top_k: int = 5):
+        """Live retrieval over the filings (no LLM involved)."""
+        import anyio
+        client = request.headers.get("x-forwarded-for", request.client.host if request.client else "?").split(",")[0]
+        if not search_limiter.allow(client):
+            raise HTTPException(429, "rate limit exceeded, try again in a minute")
+        if not 2 <= len(q) <= 300:
+            raise HTTPException(422, "query must be 2-300 characters")
+        k = max(1, min(int(top_k), 10))
+        hits = await anyio.to_thread.run_sync(lambda: index.search(q, top_k=k, company=company, year=fiscal_year))
+        return [{"evidence_id": h.chunk.chunk_id, "doc_name": h.chunk.doc_name, "company": h.chunk.company,
+                 "period": h.chunk.period, "page": h.chunk.page + 1, "section": h.chunk.section,
+                 "score": round(h.score, 4), "text": h.chunk.text[:1500]} for h in hits]
+
+    ask_enabled = os.getenv("DOCAGENT_ASK_ENABLED", "1") == "1"
+
     @app.post("/ask")
     async def ask(req: AskRequest, request: Request):
+        if not ask_enabled:
+            raise HTTPException(503, "Live agent answers are disabled on this host (no LLM attached). "
+                                     "See /examples for recorded answers; search and MCP tools are live.")
         client = request.headers.get("x-forwarded-for", request.client.host if request.client else "?").split(",")[0]
         if not limiter.allow(client):
             raise HTTPException(429, "rate limit exceeded, try again in a minute")

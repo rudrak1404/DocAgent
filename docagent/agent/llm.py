@@ -73,3 +73,25 @@ class LLM:
                                                      output_format=output_format,
                                                      **self._common(effort, max_tokens))
         return resp.parsed_output, self.record(resp, tag, t0), resp
+
+
+def make_llm(role: str = "agent"):
+    """The configured LLM backend for a role ("agent" or "judge"):
+    DOCAGENT_LLM_PROVIDER=ollama (default, local and free) or anthropic (Claude API)."""
+    from docagent.config import JUDGE_MODEL, LLM_PROVIDER, LOCAL_JUDGE_MODEL, LOCAL_MODEL
+    if LLM_PROVIDER == "anthropic":
+        return LLM(model=JUDGE_MODEL if role == "judge" else LLM_MODEL,
+                   effort="medium" if role == "judge" else LLM_EFFORT)
+    from docagent.agent.llm_local import LocalLLM
+    from docagent.config import LOCAL_JUDGE_CONTEXT
+    if role == "judge":
+        return LocalLLM(model=LOCAL_JUDGE_MODEL, num_ctx=LOCAL_JUDGE_CONTEXT)
+    return LocalLLM(model=LOCAL_MODEL)
+
+
+def agent_kwargs() -> dict:
+    """DocAgent settings that depend on the backend (small local context windows)."""
+    from docagent.config import LLM_PROVIDER, LOCAL_CONTEXT, LOCAL_RESULT_CHARS
+    if LLM_PROVIDER == "anthropic":
+        return {}
+    return {"max_result_chars": LOCAL_RESULT_CHARS, "context_tokens": LOCAL_CONTEXT}

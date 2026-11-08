@@ -116,3 +116,21 @@ def test_agent_refuses_when_it_cannot_ground_the_answer(tiny_index, docs, parsed
                                            "calculation": "", "insufficient_evidence": False})], "tool_use")
     res = run(DocAgent(server, FakeLLM([bad, bad, bad]), max_verify_retries=2).ask("What was ACME's revenue?"))
     assert res["status"] == "refused" and res["unverified_answer"] == "It was $9,999 million."
+
+
+def test_formula_constants_allowed_in_calculation_only():
+    ev = {"A:p1:c0": "Capital expenditures | (155) | (131) | (116)", "A:p2:c0": "Net revenues | 7,017 | 7,500 | 6,489"}
+    sub = {"answer": "Capex was 2.2% of revenue.", "citations": ["A:p1:c0", "A:p2:c0"], "insufficient_evidence": False,
+           "calculation": "155 / 7017 * 100 = 2.2"}
+    assert verify(sub, ev, [2.2089], "capex as % of revenue?").ok          # x100 is a conversion, not a figure
+    v = verify({**sub, "answer": "Capex was 100 million."}, ev, [2.2089], "capex?")
+    assert not v.ok and "100" in v.issues[0]                               # but not in the answer itself
+
+
+def test_guardrail_feedback_points_to_received_evidence():
+    ev = {"A:p1:c0": "Revenue | 7,017 | 6,489", "A:p2:c0": "Capital expenditures | (155) | (116)"}
+    v = verify({"answer": "Capex was $155 million.", "citations": ["A:p9:c9"], "calculation": "",
+                "insufficient_evidence": False}, ev, [], "What was capex?")
+    assert not v.ok
+    assert "Received so far" in v.issues[0] and "A:p2:c0" in v.issues[0]
+    assert "appears in ['A:p2:c0']" in v.issues[1]

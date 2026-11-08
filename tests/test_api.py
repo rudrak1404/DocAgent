@@ -33,3 +33,13 @@ def test_ask_and_rate_limit(tiny_index, docs, parsed_dir, monkeypatch):
         assert r.json()["citations"][0]["doc_name"] == "GLOBEX_2018_10K"
         c.post("/ask", json={"question": "again please"}, headers={"X-API-Key": "secret"})
         assert c.post("/ask", json={"question": "third time"}, headers={"X-API-Key": "secret"}).status_code == 429
+
+
+def test_live_search_and_disabled_ask(tiny_index, docs, parsed_dir, monkeypatch):
+    monkeypatch.setenv("DOCAGENT_ASK_ENABLED", "0")
+    with make_client(tiny_index, docs, parsed_dir, monkeypatch, []) as c:
+        hits = c.get("/search", params={"q": "total current assets", "company": "Globex"}).json()
+        assert hits and hits[0]["doc_name"] == "GLOBEX_2018_10K" and hits[0]["page"] == 1
+        assert c.get("/search", params={"q": "x"}).status_code == 422
+        r = c.post("/ask", json={"question": "What was revenue?"}, headers={"X-API-Key": "secret"})
+        assert r.status_code == 503 and "disabled" in r.json()["detail"]

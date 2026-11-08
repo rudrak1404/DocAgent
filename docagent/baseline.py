@@ -21,7 +21,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableLambda, RunnableParallel, RunnablePassthrough
 from langchain_huggingface import HuggingFaceEmbeddings
 
-from docagent.agent.llm import LLM
+from docagent.agent.llm import make_llm
 from docagent.agent.prompts import BASELINE_SYSTEM
 from docagent.config import EMBED_MODEL, EMBED_QUERY_PREFIX
 from docagent.retrieval.index import HybridIndex
@@ -32,8 +32,8 @@ def _format(docs: list[Document]) -> str:
 
 
 class PlainRAG:
-    def __init__(self, index: HybridIndex, llm: LLM | None = None, k: int = 5, device: str | None = None):
-        self.llm = llm or LLM()
+    def __init__(self, index: HybridIndex, llm=None, k: int = 5, device: str | None = None):
+        self.llm = llm or make_llm()
         emb = HuggingFaceEmbeddings(
             model_name=EMBED_MODEL, model_kwargs={"device": device or "cpu"},
             encode_kwargs={"normalize_embeddings": True},

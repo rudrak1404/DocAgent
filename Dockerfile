@@ -19,7 +19,7 @@ RUN pip install -r requirements-deploy.txt
 
 # Non-root user; files are copied with the right owner (a later `chown -R` would
 # duplicate every file into a new image layer).
-RUN useradd --create-home --uid 10001 app && mkdir -p /app/.hf && chown app:app /app /app/.hf
+RUN useradd --create-home --uid 1000 app && mkdir -p /app/.hf && chown app:app /app /app/.hf
 USER app
 
 # Hosted configuration. A cross-encoder re-ranker is slow on CPU-only hosts, so the

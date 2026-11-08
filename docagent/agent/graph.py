@@ -29,7 +29,7 @@ from mcp import Client
 from pydantic import BaseModel, Field
 
 from docagent.agent.guardrails import verify
-from docagent.agent.llm import LLM
+from docagent.agent.llm import make_llm
 from docagent.agent.prompts import AGENT_SYSTEM, BUDGET_EXHAUSTED, NUDGE, PLANNER_SYSTEM, SUBMIT_TOOL
 from docagent.config import MAX_TOOL_CALLS, MAX_VERIFY_RETRIES
 
@@ -84,6 +84,87 @@ def _echo_safe(content: list[dict]) -> list[dict]:
     return [b for i, b in enumerate(content) if i > cut or (b.get("type") not in drop and b.get("type") != "fallback")]
 
 
+def _shrink(sc: dict, limit: int) -> dict:
+    """Model-facing copy of a tool result that fits a small context window:
+    passage texts share the character budget; a page is cut at the limit. The
+    evidence registry keeps the full text, so guardrails still check against it."""
+    out = dict(sc)
+    if isinstance(out.get("passages"), list) and out["passages"]:
+        per = max(400, limit // len(out["passages"]))
+        out["passages"] = [{**p, "text": p["text"][:per] + (" [truncated]" if len(p["text"]) > per else "")}
+                           for p in out["passages"]]
+    elif isinstance(out.get("text"), str) and len(out["text"]) > limit:
+        out["text"] = out["text"][:limit] + " [truncated: page continues]"
+    return out
+
+
+CHARS_PER_TOKEN = 3.0      # conservative for JSON full of figures (overestimates tokens)
+SHORT_NOTE = "older result shortened to save context; its ids stay citable; use read_page or search again for the full text"
+
+
+def _msg_chars(m: dict) -> int:
+    c = m["content"]
+    if isinstance(c, str):
+        return len(c)
+    n = 0
+    for b in c:
+        if b.get("type") == "tool_result":
+            n += len(b["content"]) if isinstance(b["content"], str) else len(json.dumps(b["content"]))
+        elif b.get("type") == "text":
+            n += len(b.get("text", ""))
+        else:
+            n += len(json.dumps(b, ensure_ascii=False))
+    return n
+
+
+def _short(content: str) -> str:
+    """Short form of an older tool result: ids, sources and an opening snippet."""
+    try:
+        sc = json.loads(content)
+    except (json.JSONDecodeError, TypeError):
+        sc = None
+    if isinstance(sc, dict) and isinstance(sc.get("passages"), list):
+        sc = {**sc, "passages": [{**p, "text": str(p.get("text", ""))[:240] + " ..."} for p in sc["passages"]],
+              "note": SHORT_NOTE}
+    elif isinstance(sc, dict) and isinstance(sc.get("text"), str):
+        sc = {**sc, "text": sc["text"][:500] + " ...", "note": SHORT_NOTE}
+    elif len(content) > 1500:
+        return content[:1500] + f" ... [{SHORT_NOTE}]"
+    else:
+        return content
+    return json.dumps(sc, ensure_ascii=False, separators=(",", ":"))
+
+
+def _fit(messages: list, budget_tokens: float, overhead_tokens: float) -> tuple[list, int]:
+    """Keep the prompt inside a small context window. Ollama silently drops the start
+    of an over-long prompt (the question!) and stops mid-answer when the window is
+    full, so the oldest tool results are shortened first (never the latest message,
+    never error feedback) until the estimated prompt fits. The evidence registry keeps
+    every full text, so shortened ids remain valid citations for the guardrails.
+    Returns (messages, number of results shortened)."""
+    est = overhead_tokens + sum(_msg_chars(m) for m in messages) / CHARS_PER_TOKEN
+    if est <= budget_tokens:
+        return messages, 0
+    out, n = list(messages), 0
+    for i in range(1, len(out) - 1):
+        if est <= budget_tokens:
+            break
+        m = out[i]
+        if m["role"] != "user" or isinstance(m["content"], str):
+            continue
+        blocks = []
+        for b in m["content"]:
+            if (b.get("type") == "tool_result" and not b.get("is_error") and isinstance(b.get("content"), str)
+                    and SHORT_NOTE not in b["content"]):
+                new = _short(b["content"])
+                if len(new) < len(b["content"]):
+                    est -= (len(b["content"]) - len(new)) / CHARS_PER_TOKEN
+                    b, n = {**b, "content": new}, n + 1
+            blocks.append(b)
+        out[i] = {**m, "content": blocks}
+    return out, n
+
+
 def _tool_result(tool_use_id: str, content: str, is_error: bool = False) -> dict:
     out = {"type": "tool_result", "tool_use_id": tool_use_id, "content": content}
     if is_error:
@@ -92,19 +173,27 @@ def _tool_result(tool_use_id: str, content: str, is_error: bool = False) -> dict
 
 
 class DocAgent:
-    def __init__(self, mcp_target, llm: LLM | None = None, max_tool_calls: int = MAX_TOOL_CALLS,
-                 max_verify_retries: int = MAX_VERIFY_RETRIES, use_planner: bool = True):
+    def __init__(self, mcp_target, llm=None, max_tool_calls: int = MAX_TOOL_CALLS,
+                 max_verify_retries: int = MAX_VERIFY_RETRIES, use_planner: bool = True,
+                 max_result_chars: int | None = None, context_tokens: int | None = None):
         """mcp_target: an MCPServer object (in-process, in-memory transport) or a
-        Streamable HTTP URL such as http://localhost:8080/mcp."""
+        Streamable HTTP URL such as http://localhost:8080/mcp.
+        max_result_chars / context_tokens: set for small-context local models (tool
+        results are trimmed for the model, and old results are shortened so the
+        conversation always fits the window)."""
         self.mcp_target = mcp_target
-        self.llm = llm or LLM()
+        self.llm = llm or make_llm()
         self.max_tool_calls = max_tool_calls
         self.max_verify_retries = max_verify_retries
         self.use_planner = use_planner
+        self.max_result_chars = max_result_chars
+        self.context_tokens = context_tokens
 
     # ------------------------------------------------------------------ graph
     def _build(self, client: Client, tools: list):
         llm = self.llm
+        overhead = (len(AGENT_SYSTEM) + len(json.dumps(tools))) / CHARS_PER_TOKEN + 200
+        ctx_budget = (self.context_tokens - getattr(llm, "max_tokens", 4096) - 512) if self.context_tokens else None
 
         async def plan(s: State) -> dict:
             q = s["question"]
@@ -126,9 +215,14 @@ class DocAgent:
             return {"plan": plan_obj, "messages": [{"role": "user", "content": first}], "calls": calls}
 
         async def agent(s: State) -> dict:
-            resp, rec = await llm.create(system=AGENT_SYSTEM, messages=s["messages"], tools=tools, tag="agent")
+            msgs, shortened = s["messages"], 0
+            if ctx_budget:
+                msgs, shortened = _fit(msgs, ctx_budget, overhead)
+            resp, rec = await llm.create(system=AGENT_SYSTEM, messages=msgs, tools=tools, tag="agent")
+            if shortened:
+                rec["shortened_results"] = shortened
             content = _echo_safe([b.to_dict() for b in resp.content])
-            return {"messages": s["messages"] + [{"role": "assistant", "content": content}],
+            return {"messages": msgs + [{"role": "assistant", "content": content}],
                     "pending": [b for b in content if b.get("type") == "tool_use"],
                     "stop_reason": resp.stop_reason, "calls": s["calls"] + [rec]}
 
@@ -152,7 +246,8 @@ class DocAgent:
                 rec["error"] = text[:500]
                 return _tool_result(block["id"], text, is_error=bool(res.is_error)), rec | {"structured": None}
             sc = res.structured_content
-            return _tool_result(block["id"], json.dumps(sc, ensure_ascii=False, separators=(",", ":"))), \
+            shown = _shrink(sc, self.max_result_chars) if self.max_result_chars else sc
+            return _tool_result(block["id"], json.dumps(shown, ensure_ascii=False, separators=(",", ":"))), \
                 rec | {"structured": sc}
 
         async def tools_node(s: State) -> dict:
