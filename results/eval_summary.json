@@ -1,0 +1,249 @@
+{
+ "questions": 150,
+ "graded": {
+  "baseline": 150,
+  "agent": 150
+ },
+ "baseline|generation": {
+  "llm_calls": 150,
+  "hit_token_limit": 11,
+  "resampled": 16,
+  "results_shortened": 0
+ },
+ "agent|generation": {
+  "llm_calls": 1218,
+  "hit_token_limit": 0,
+  "resampled": 0,
+  "results_shortened": 35
+ },
+ "baseline|all": {
+  "n": 150,
+  "accuracy": 0.34,
+  "correct": 51,
+  "incorrect": 44,
+  "refusal": 55,
+  "errors": 0,
+  "accuracy_when_answered": 0.5368421052631579,
+  "hallucination_rate": 0.29333333333333333,
+  "faithfulness": 0.9622807017543861,
+  "citation_hits_gold_page": 0.41333333333333333,
+  "cost_per_question": 0.0,
+  "seconds_per_question": 110.02533333333335,
+  "tool_calls_per_question": 0.0
+ },
+ "baseline|test split": {
+  "n": 75,
+  "accuracy": 0.32,
+  "correct": 24,
+  "incorrect": 24,
+  "refusal": 27,
+  "errors": 0,
+  "accuracy_when_answered": 0.5,
+  "hallucination_rate": 0.32,
+  "faithfulness": 0.953125,
+  "citation_hits_gold_page": 0.4266666666666667,
+  "cost_per_question": 0.0,
+  "seconds_per_question": 116.268,
+  "tool_calls_per_question": 0.0
+ },
+ "baseline|excluding pilot": {
+  "n": 140,
+  "accuracy": 0.34285714285714286,
+  "correct": 48,
+  "incorrect": 40,
+  "refusal": 52,
+  "errors": 0,
+  "accuracy_when_answered": 0.5454545454545454,
+  "hallucination_rate": 0.2857142857142857,
+  "faithfulness": 0.9668560606060606,
+  "citation_hits_gold_page": 0.39285714285714285,
+  "cost_per_question": 0.0,
+  "seconds_per_question": 109.9022142857143,
+  "tool_calls_per_question": 0.0
+ },
+ "baseline|metrics-generated": {
+  "n": 50,
+  "accuracy": 0.32,
+  "correct": 16,
+  "incorrect": 15,
+  "refusal": 19,
+  "errors": 0,
+  "accuracy_when_answered": 0.5161290322580645,
+  "hallucination_rate": 0.3,
+  "faithfulness": 1.0,
+  "citation_hits_gold_page": 0.38,
+  "cost_per_question": 0.0,
+  "seconds_per_question": 104.05439999999999,
+  "tool_calls_per_question": 0.0
+ },
+ "baseline|domain-relevant": {
+  "n": 50,
+  "accuracy": 0.34,
+  "correct": 17,
+  "incorrect": 18,
+  "refusal": 15,
+  "errors": 0,
+  "accuracy_when_answered": 0.4857142857142857,
+  "hallucination_rate": 0.36,
+  "faithfulness": 0.9357142857142857,
+  "citation_hits_gold_page": 0.38,
+  "cost_per_question": 0.0,
+  "seconds_per_question": 101.6124,
+  "tool_calls_per_question": 0.0
+ },
+ "baseline|novel-generated": {
+  "n": 50,
+  "accuracy": 0.36,
+  "correct": 18,
+  "incorrect": 11,
+  "refusal": 21,
+  "errors": 0,
+  "accuracy_when_answered": 0.6206896551724138,
+  "hallucination_rate": 0.22,
+  "faithfulness": 0.9540229885057471,
+  "citation_hits_gold_page": 0.48,
+  "cost_per_question": 0.0,
+  "seconds_per_question": 124.4092,
+  "tool_calls_per_question": 0.0
+ },
+ "agent|all": {
+  "n": 150,
+  "accuracy": 0.5266666666666666,
+  "correct": 79,
+  "incorrect": 40,
+  "refusal": 31,
+  "errors": 0,
+  "accuracy_when_answered": 0.6638655462184874,
+  "hallucination_rate": 0.26666666666666666,
+  "faithfulness": 0.9228418640183346,
+  "citation_hits_gold_page": 0.6338028169014085,
+  "cost_per_question": 0.0,
+  "seconds_per_question": 88.4468,
+  "tool_calls_per_question": 5.66
+ },
+ "agent|test split": {
+  "n": 75,
+  "accuracy": 0.5333333333333333,
+  "correct": 40,
+  "incorrect": 21,
+  "refusal": 14,
+  "errors": 0,
+  "accuracy_when_answered": 0.6557377049180327,
+  "hallucination_rate": 0.28,
+  "faithfulness": 0.916542473919523,
+  "citation_hits_gold_page": 0.6901408450704225,
+  "cost_per_question": 0.0,
+  "seconds_per_question": 86.52613333333333,
+  "tool_calls_per_question": 5.613333333333333
+ },
+ "agent|excluding pilot": {
+  "n": 140,
+  "accuracy": 0.5285714285714286,
+  "correct": 74,
+  "incorrect": 39,
+  "refusal": 27,
+  "errors": 0,
+  "accuracy_when_answered": 0.6548672566371682,
+  "hallucination_rate": 0.2785714285714286,
+  "faithfulness": 0.918744971842317,
+  "citation_hits_gold_page": 0.6287878787878788,
+  "cost_per_question": 0.0,
+  "seconds_per_question": 86.23021428571428,
+  "tool_calls_per_question": 5.55
+ },
+ "agent|metrics-generated": {
+  "n": 50,
+  "accuracy": 0.68,
+  "correct": 34,
+  "incorrect": 11,
+  "refusal": 5,
+  "errors": 0,
+  "accuracy_when_answered": 0.7555555555555555,
+  "hallucination_rate": 0.22,
+  "faithfulness": 0.9757575757575757,
+  "citation_hits_gold_page": 0.7142857142857143,
+  "cost_per_question": 0.0,
+  "seconds_per_question": 69.9956,
+  "tool_calls_per_question": 5.3
+ },
+ "agent|domain-relevant": {
+  "n": 50,
+  "accuracy": 0.44,
+  "correct": 22,
+  "incorrect": 13,
+  "refusal": 15,
+  "errors": 0,
+  "accuracy_when_answered": 0.6285714285714286,
+  "hallucination_rate": 0.26,
+  "faithfulness": 0.9069264069264069,
+  "citation_hits_gold_page": 0.6170212765957447,
+  "cost_per_question": 0.0,
+  "seconds_per_question": 103.28980000000001,
+  "tool_calls_per_question": 6.26
+ },
+ "agent|novel-generated": {
+  "n": 50,
+  "accuracy": 0.46,
+  "correct": 23,
+  "incorrect": 16,
+  "refusal": 11,
+  "errors": 0,
+  "accuracy_when_answered": 0.5897435897435898,
+  "hallucination_rate": 0.32,
+  "faithfulness": 0.8760683760683762,
+  "citation_hits_gold_page": 0.5652173913043478,
+  "cost_per_question": 0.0,
+  "seconds_per_question": 92.055,
+  "tool_calls_per_question": 5.42
+ },
+ "paired": {
+  "agent_only_correct": 40,
+  "baseline_only_correct": 12,
+  "mcnemar_p": 0.0001275387838557407,
+  "accuracy_diff": 0.1866666666666666,
+  "ci95": [
+   0.09333333333333338,
+   0.28
+  ]
+ },
+ "guardrail_blocked": {
+  "n": 31,
+  "kinds": {
+   "blocked by the guardrails": {
+    "n": 16,
+    "would_be_correct": 11,
+    "would_be_incorrect": 5,
+    "would_be_refusal": 0
+   },
+   "flagged by the agent as insufficient evidence": {
+    "n": 15,
+    "would_be_correct": 3,
+    "would_be_incorrect": 5,
+    "would_be_refusal": 7
+   }
+  },
+  "would_have_been_wrong_or_refusal": 17,
+  "accuracy_without_withholding": 0.62,
+  "incorrect_without_withholding": 50
+ },
+ "judge_agreement": {
+  "n": 40,
+  "agreement": 0.825,
+  "cohen_kappa": 0.7185929648241206,
+  "agreement_correct_vs_not": 0.9,
+  "cohen_kappa_correct_vs_not": 0.8014888337468983,
+  "judge_correct_manual_not": 0,
+  "manual_correct_judge_not": 4,
+  "accuracy_manual": 0.575,
+  "accuracy_judge": 0.475,
+  "disagreements": [
+   "agent|financebench_id_00215",
+   "agent|financebench_id_05718",
+   "baseline|financebench_id_00215",
+   "baseline|financebench_id_00222",
+   "baseline|financebench_id_00723",
+   "baseline|financebench_id_00995",
+   "baseline|financebench_id_04412"
+  ]
+ }
+}

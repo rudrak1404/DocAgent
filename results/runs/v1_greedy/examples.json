@@ -1,0 +1,955 @@
+[
+ {
+  "question": "What is the FY2018 capital expenditure amount (in USD millions) for 3M? Give a response to the question by relying on the details shown in the cash flow statement.",
+  "answer": "$1,577 million",
+  "status": "answered",
+  "citations": [
+   {
+    "evidence_id": "3M_2018_10K:p45:page",
+    "doc_name": "3M_2018_10K",
+    "page": 46,
+    "text": "Table of Contents\nCash Flows:\nCash flows from operating, investing and financing activities are provided in the tables that follow. Individual amounts in the Consolidated Statement of\nCash Flows exclude the effects of acquisitions, divestitures and exchange rate impacts on cash and cash equivalents, which are presented separately in the\ncash flows. Thus, the amounts presented in the following operating, investing and financing activities tables reflect changes in balances from period to\nperiod adjusted for these effects.\nCash Flows from Operating Activities:\nYears Ended December 31\n(Millions) | 2018 | 2017 | 2016\nNet income including noncontrolling interest | $5,363 | $4,869 | $5,058\nDepreciation and amortization | 1,488 | 1,544 | 1,474\nCompany pension and postretirement contributions | (370) | (967) | (383)\nCompany pension and postretirement expense | 410 | 334 | 250\nStock-based compensation expense | 302 | 324 | 298\nGain on sale of businesses | (545) | (586) | (111)\nIncome taxes (deferred and accrued income taxes) | 77 | 1,074 | 108\nAccounts receivable | (305) | (245) | (313)\nInventories | (509) | (387) | 57\nAccounts payable | 408 | 24 | 148\nOther - net | 120 | 256 | 76\nNet cash provided by operating activities | $6,439 | $6,240 | $6,662\nCash flows from operating activities can fluctuate significantly from period to period, as pension funding decisions, tax timing differences and other items\ncan significantly impact cash flows.\nIn 2018, cash flows provided by operating acti"
+   }
+  ],
+  "calculation": "",
+  "trace": [
+   {
+    "tool": "list_documents",
+    "input": {
+     "company": "3M"
+    },
+    "seconds": 0.01,
+    "is_error": false
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "Capital Expenditures Capital Spending cash flow operating activities",
+     "company": "3M",
+     "doc_name": "3M_2018_10K"
+    },
+    "seconds": 1.36,
+    "is_error": false,
+    "returned": [
+     "3M_2018_10K:p48:c1",
+     "3M_2018_10K:p45:c0",
+     "3M_2018_10K:p45:c1",
+     "3M_2018_10K:p46:c0",
+     "3M_2018_10K:p45:c2",
+     "3M_2018_10K:p59:c0",
+     "3M_2018_10K:p6:c2",
+     "3M_2018_10K:p38:c0"
+    ]
+   },
+   {
+    "tool": "read_page",
+    "input": {
+     "doc_name": "3M_2018_10K",
+     "page": 46
+    },
+    "seconds": 0.02,
+    "is_error": false,
+    "returned": [
+     "3M_2018_10K:p45:page"
+    ]
+   }
+  ],
+  "tool_calls": 3,
+  "seconds": 71.75,
+  "usage": {
+   "input_tokens": 16956,
+   "output_tokens": 919,
+   "cache_read": 0,
+   "cache_write": 0,
+   "cost_usd": 0.0,
+   "fallbacks": 0
+  },
+  "gold_answer": "$1577.00",
+  "grade": "correct",
+  "id": "financebench_id_03029"
+ },
+ {
+  "question": "What is the FY2017 operating cash flow ratio for Adobe? Operating cash flow ratio is defined as: cash from operations / total current liabilities. Round your answer to two decimal places. Please utilize information provided primarily within the balance sheet and the cash flow statement.",
+  "answer": "0.83",
+  "status": "answered",
+  "citations": [
+   {
+    "evidence_id": "ADOBE_2017_10K:p60:c1",
+    "doc_name": "ADOBE_2017_10K",
+    "page": 61,
+    "text": "[columns: 2017 | 2016 | 2015]\nPrepaid expenses and other current assets | 28,040 | (71,021) | (7,701)\nTrade payables | (45,186) | (6,281) | 22,870\nAccrued expenses | 154,125 | 64,978 | (22,564)\nIncome taxes payable | (34,493) | 43,115 | 97,934\nDeferred revenue | 475,402 | 524,840 | 320,801\nNet cash provided by operating activities | 2,912,853 | 2,199,728 | 1,469,502\nCash flows from investing activities:\nPurchases of short-term investments | (1,931,011) | (2,285,222) | (2,064,833)\nMaturities of short-term investments | 759,737 | 769,228 | 371,790\nProceeds from sales of short-term investments | 1,393,929 | 860,849 | 1,176,476\nAcquisitions, net of cash acquired | (459,626) | (48,427) | (826,004)\nPurchases of property and equipment | (178,122) | (203,805) | (184,936)\nProceeds from sale of property | - | - | 57,779\nPurchases of long-term investments, intangibles and other assets | (29,918) | (58,433) | (22,779)\nProceeds from sale of long-term investments | 2,134 | 5,777 | 4,149\nNet cash used for investing activities | (442,877) | (960,033) | (1,488,358)"
+   },
+   {
+    "evidence_id": "ADOBE_2017_10K:p56:c0",
+    "doc_name": "ADOBE_2017_10K",
+    "page": 57,
+    "text": "Table of Contents\nADOBE SYSTEMS INCORPORATED\nCONSOLIDATED BALANCE SHEETS\n(In thousands, except par value)\nDecember 1, | December 2,\n2017 | 2016\nASSETS\nCurrent assets:\nCash and cash equivalents | $2,306,072 $1,011,315\nShort-term investments | 3,513,702 | 3,749,985\nTrade receivables, net of allowances for doubtful accounts of $9,151 and $6,214, respectively | 1,217,968 | 833,033\nPrepaid expenses and other current assets | 210,071 | 245,441\nTotal current assets | 7,247,813 | 5,839,774\nProperty and equipment, net | 936,976 | 816,264\nGoodwill | 5,821,561 | 5,406,474\nPurchased and other intangibles, net | 385,658 | 414,405\nInvestment in lease receivable | - | 80,439\nOther assets | 143,548 | 139,890\nTotal assets | $14,535,556 $12,697,246\nLIABILITIES AND STOCKHOLDERS’ EQUITY\nCurrent liabilities:\nTrade payables | $113,538 $88,024\nAccrued expenses | 993,773 | 739,630\nIncome taxes payable | 14,196 | 38,362\nDeferred revenue | 2,405,950 | 1,945,619\nTotal current liabilities | 3,527,457 | 2,811,635\nLong-term liabilities:\nDebt and capital lease obligations | 1,881,421 | 1,892,200"
+   }
+  ],
+  "calculation": "Cash from Operations / Total Current Liabilities = 2,912,853 / 3,527,457 = 0.8257657... ≈ 0.83",
+  "trace": [
+   {
+    "tool": "list_documents",
+    "input": {
+     "company": "Adobe Inc."
+    },
+    "seconds": 0.0,
+    "is_error": false
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "operating cash flow",
+     "company": "Adobe Inc.",
+     "fiscal_year": 2017,
+     "doc_type": "10k"
+    },
+    "seconds": 1.71,
+    "is_error": false,
+    "returned": [
+     "ADOBE_2017_10K:p60:c0",
+     "ADOBE_2017_10K:p48:c0",
+     "ADOBE_2017_10K:p67:c2",
+     "ADOBE_2017_10K:p67:c3",
+     "ADOBE_2017_10K:p60:c1",
+     "ADOBE_2017_10K:p48:c1",
+     "ADOBE_2017_10K:p60:c2",
+     "ADOBE_2017_10K:p49:c0"
+    ]
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "current liabilities",
+     "company": "Adobe Inc.",
+     "fiscal_year": 2017,
+     "doc_type": "10k"
+    },
+    "seconds": 3.34,
+    "is_error": false,
+    "returned": [
+     "ADOBE_2017_10K:p56:c0",
+     "ADOBE_2017_10K:p56:c1",
+     "ADOBE_2017_10K:p47:c2",
+     "ADOBE_2017_10K:p36:c0",
+     "ADOBE_2017_10K:p72:c1",
+     "ADOBE_2017_10K:p81:c2",
+     "ADOBE_2017_10K:p73:c0",
+     "ADOBE_2017_10K:p80:c2"
+    ]
+   },
+   {
+    "tool": "calculate",
+    "input": {
+     "expression": "2912853 / 3527457"
+    },
+    "seconds": 0.0,
+    "is_error": false,
+    "value": 0.8257657003331295
+   }
+  ],
+  "tool_calls": 4,
+  "seconds": 133.45,
+  "usage": {
+   "input_tokens": 32558,
+   "output_tokens": 1181,
+   "cache_read": 0,
+   "cache_write": 0,
+   "cost_usd": 0.0,
+   "fallbacks": 0
+  },
+  "gold_answer": "0.83",
+  "grade": "correct",
+  "id": "financebench_id_03856"
+ },
+ {
+  "question": "What is Amcor's year end FY2020 net AR (in USD millions)? Address the question by adopting the perspective of a financial analyst who can only use the details shown within the balance sheet.",
+  "answer": "$1,615.9 million",
+  "status": "answered",
+  "citations": [
+   {
+    "evidence_id": "AMCOR_2020_10K:p49:page",
+    "doc_name": "AMCOR_2020_10K",
+    "page": 50,
+    "text": "Amcor plc and Subsidiaries\nConsolidated Balance Sheet\n(in millions)\nAs of June 30, | 2020 | 2019\nAssets\nCurrent assets:\nCash and cash equivalents | $742.6 $601.6\nTrade receivables, net | 1,615.9 | 1,864.3\nInventories, net | 1,831.9 | 1,953.8\nPrepaid expenses and other current assets | 344.3 | 374.3\nAssets held for sale | - | 416.1\nTotal current assets | 4,534.7 | 5,210.1\nNon-current assets:\nInvestments in affiliated companies | 77.7 | 98.9\nProperty, plant and equipment, net | 3,614.8 | 3,975.0\nOperating lease assets | 525.3 | -\nDeferred tax assets | 135.4 | 190.9\nOther intangible assets, net | 1,994.3 | 2,306.8\nGoodwill | 5,339.3 | 5,156.0\nEmployee benefit assets | 43.4 | 40.2\nOther non-current assets | 177.2 | 187.1\nTotal non-current assets | 11,907.4 | 11,954.9\nTotal assets | $16,442.1 $17,165.0\nLiabilities\nCurrent liabilities:\nCurrent portion of long-term debt | $11.1 $5.4\nShort-term debt | 195.2 | 788.8\nTrade payables | 2,170.8 | 2,303.4\nAccrued employee costs | 476.5 | 378.4\nOther current liabilities | 1,120.0 | 1,044.9\nLiabilities held for sale | - | 20.9\nTotal current liabilities | 3,973.6 | 4,541.8\nNon-current liabilities:\nLong-term debt, less current portion | 6,028.4 | 5,309.0\nOperating lease liabilities | 465.7 | -\nDeferred tax liabilities | 672.4 | 1,011.7\nEmployee benefit obligations | 391.7 | 386.8\nOther non-current liabilities | 223.2 | 241.0\nTotal non-current liabilities | 7,781.4 | 6,948.5\nTotal liabilities | 11,755.0 | 11,490.3\nCommitments and contingencies "
+   }
+  ],
+  "calculation": "",
+  "trace": [
+   {
+    "tool": "list_documents",
+    "input": {
+     "company": "Amcor"
+    },
+    "seconds": 0.03,
+    "is_error": false
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "Accounts Receivable balance sheet",
+     "company": "Amcor",
+     "fiscal_year": 2020,
+     "doc_type": "10k"
+    },
+    "seconds": 1.73,
+    "is_error": false,
+    "returned": [
+     "AMCOR_2020_10K:p55:c1",
+     "AMCOR_2020_10K:p55:c0",
+     "AMCOR_2020_10K:p55:c2",
+     "AMCOR_2020_10K:p49:c0",
+     "AMCOR_2020_10K:p110:c0",
+     "AMCOR_2020_10K:p87:c0",
+     "AMCOR_2020_10K:p145:c0",
+     "AMCOR_2020_10K:p49:c1"
+    ]
+   },
+   {
+    "tool": "read_page",
+    "input": {
+     "doc_name": "AMCOR_2020_10K",
+     "page": 50
+    },
+    "seconds": 0.01,
+    "is_error": false,
+    "returned": [
+     "AMCOR_2020_10K:p49:page"
+    ]
+   }
+  ],
+  "tool_calls": 3,
+  "seconds": 101.24,
+  "usage": {
+   "input_tokens": 17070,
+   "output_tokens": 1523,
+   "cache_read": 0,
+   "cache_write": 0,
+   "cost_usd": 0.0,
+   "fallbacks": 0
+  },
+  "gold_answer": "$1616.00",
+  "grade": "correct",
+  "id": "financebench_id_03882"
+ },
+ {
+  "question": "Does AMD have a reasonably healthy liquidity profile based on its quick ratio for FY22? If the quick ratio is not relevant to measure liquidity, please state that and explain why.",
+  "answer": "AMD has a reasonably healthy liquidity profile for FY22 with a quick ratio of 1.57.",
+  "status": "answered",
+  "citations": [
+   {
+    "evidence_id": "AMD_2022_10K:p55:page",
+    "doc_name": "AMD_2022_10K",
+    "page": 56,
+    "text": "Table of Contents\nAdvanced Micro Devices, Inc.\nConsolidated Balance Sheets\nDecember 31, | December 25,\n2022 | 2021\n(In millions, except par value amounts)\nASSETS\nCurrent assets:\nCash and cash equivalents | $4,835 $2,535\nShort-term investments | 1,020 | 1,073\nAccounts receivable, net | 4,126 | 2,706\nInventories | 3,771 | 1,955\nReceivables from related parties | 2 | 2\nPrepaid expenses and other current assets | 1,265 | 312\nTotal current assets | 15,019 | 8,583\nProperty and equipment, net | 1,513 | 702\nOperating lease right-of-use assets | 460 | 367\nGoodwill | 24,177 | 289\nAcquisition-related intangibles | 24,118 | -\nInvestment: equity method | 83 | 69\nDeferred tax assets | 58 | 931\nOther non-current assets | 2,152 | 1,478\nTotal assets | $67,580 $12,419\nLIABILITIES AND STOCKHOLDERS’ EQUITY\nCurrent liabilities:\nAccounts payable | $2,493 $1,321\nPayables to related parties | 463 | 85\nAccrued liabilities | 3,077 | 2,424\nCurrent portion of long-term debt, net | - | 312\nOther current liabilities | 336 | 98\nTotal current liabilities | 6,369 | 4,240\nLong-term debt, net of current portion | 2,467 | 1\nLong-term operating lease liabilities | 396 | 348\nDeferred tax liabilities | 1,934 | 12\nOther long-term liabilities | 1,664 | 321\nCommitments and Contingencies (see Notes 16 and 17)\nStockholders’ equity:\nCapital stock:\nCommon stock, par value $0.01; shares authorized: 2,250; shares issued: 1,645 and 1,232; shares\noutstanding: 1,612 and 1,207 | 16 | 12\nAdditional paid-in capital | 58,005 | 11"
+   }
+  ],
+  "calculation": "Quick Ratio = (Cash and cash equivalents + Short-term investments + Accounts receivable) / Current liabilities = ($4,835 + $1,020 + $4,126) / $6,369 = $9,981 / $6,369 = 1.57",
+  "trace": [
+   {
+    "tool": "list_documents",
+    "input": {
+     "company": "AMD"
+    },
+    "seconds": 0.0,
+    "is_error": false
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "quick ratio",
+     "company": "AMD",
+     "fiscal_year": 2022,
+     "doc_type": "10k"
+    },
+    "seconds": 1.93,
+    "is_error": false,
+    "returned": [
+     "AMD_2022_10K:p52:c2",
+     "AMD_2022_10K:p71:c0",
+     "AMD_2022_10K:p66:c1",
+     "AMD_2022_10K:p45:c2",
+     "AMD_2022_10K:p70:c0",
+     "AMD_2022_10K:p61:c1",
+     "AMD_2022_10K:p45:c1",
+     "AMD_2022_10K:p77:c1"
+    ]
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "cash and cash equivalents accounts receivable inventories current liabilities",
+     "company": "AMD",
+     "fiscal_year": 2022,
+     "doc_type": "10k"
+    },
+    "seconds": 1.55,
+    "is_error": false,
+    "returned": [
+     "AMD_2022_10K:p71:c0",
+     "AMD_2022_10K:p69:c0",
+     "AMD_2022_10K:p55:c0",
+     "AMD_2022_10K:p62:c0",
+     "AMD_2022_10K:p3:c1",
+     "AMD_2022_10K:p51:c0",
+     "AMD_2022_10K:p50:c0",
+     "AMD_2022_10K:p57:c2"
+    ]
+   },
+   {
+    "tool": "calculate",
+    "input": {
+     "expression": "(4835 + 1020 + 4126) / 6369"
+    },
+    "seconds": 0.01,
+    "is_error": false,
+    "value": 1.5671219971738106
+   },
+   {
+    "tool": "read_page",
+    "input": {
+     "doc_name": "AMD_2022_10K",
+     "page": 55
+    },
+    "seconds": 0.02,
+    "is_error": false,
+    "returned": [
+     "AMD_2022_10K:p54:page"
+    ]
+   },
+   {
+    "tool": "read_page",
+    "input": {
+     "doc_name": "AMD_2022_10K",
+     "page": 56
+    },
+    "seconds": 0.0,
+    "is_error": false,
+    "returned": [
+     "AMD_2022_10K:p55:page"
+    ]
+   },
+   {
+    "tool": "calculate",
+    "input": {
+     "expression": "(4835 + 1020 + 4126) / 6369"
+    },
+    "seconds": 0.0,
+    "is_error": false,
+    "value": 1.5671219971738106
+   }
+  ],
+  "tool_calls": 7,
+  "seconds": 342.22,
+  "usage": {
+   "input_tokens": 62877,
+   "output_tokens": 2378,
+   "cache_read": 0,
+   "cache_write": 0,
+   "cost_usd": 0.0,
+   "fallbacks": 0
+  },
+  "gold_answer": "Yes. The quick ratio is 1.57, calculated as (cash and cash equivalents+Short term investments+Accounts receivable, net+receivables from related parties)/ (current liabilities).",
+  "grade": "correct",
+  "id": "financebench_id_00222"
+ },
+ {
+  "question": "Does Adobe have an improving operating margin profile as of FY2022? If operating margin is not a useful metric for a company like this, then state that and explain why.",
+  "answer": "No, Adobe's operating margin did not improve as of FY2022; it decreased from 36.8% in FY2021 to 34.6% in FY2022. Operating margin is a useful metric for Adobe as a SaaS company with subscription-based revenue streams.",
+  "status": "answered",
+  "citations": [
+   {
+    "evidence_id": "ADOBE_2022_10K:p53:c0",
+    "doc_name": "ADOBE_2022_10K",
+    "page": 54,
+    "text": "Table of Contents\nADOBE INC.\nCONSOLIDATED STATEMENTS OF INCOME\n(In millions, except per share data)\nYears Ended\nDecember 2, | December 3, | November 27,\n2022 | 2021 | 2020\nRevenue:\nSubscription | $16,388 $14,573 $11,626\nProduct | 532 | 555 | 507\nServices and other | 686 | 657 | 735\nTotal revenue | 17,606 | 15,785 | 12,868\nCost of revenue:\nSubscription | 1,646 | 1,374 | 1,108\nProduct | 35 | 41 | 36\nServices and other | 484 | 450 | 578\nTotal cost of revenue | 2,165 | 1,865 | 1,722\nGross profit | 15,441 | 13,920 | 11,146\nOperating expenses:\nResearch and development | 2,987 | 2,540 | 2,188\nSales and marketing | 4,968 | 4,321 | 3,591\nGeneral and administrative | 1,219 | 1,085 | 968\nAmortization of intangibles | 169 | 172 | 162\nTotal operating expenses | 9,343 | 8,118 | 6,909\nOperating income | 6,098 | 5,802 | 4,237\nNon-operating income (expense):\nInterest expense | (112) | (113) | (116)\nInvestment gains (losses), net | (19) | 16 | 13\nOther income (expense), net | 41 | - | 42\nTotal non-operating income (expense), net | (90) | (97) | (61)\nIncome before income taxes | 6,008 | 5,705 | 4,176"
+   },
+   {
+    "evidence_id": "ADOBE_2022_10K:p64:c0",
+    "doc_name": "ADOBE_2022_10K",
+    "page": 65,
+    "text": "Table of Contents\nADOBE INC.\nNOTES TO CONSOLIDATED FINANCIAL STATEMENTS (Continued)\nOur segment revenue and results for fiscal 2022, 2021 and 2020 were as follows:\nDigital | Digital | Publishing and\n(dollars in millions) | Media | Experience | Advertising | Total\nFiscal 2022\nRevenue | $ 12,842 | $4,422 | $342 | $ 17,606\nCost of revenue | 561 | 1,502 | 102 | 2,165\nGross profit | $ 12,281 | $2,920 | $240 | $ 15,441\nGross profit as a percentage of revenue | 96 % | 66 % | 70 % | 88 %\nFiscal 2021\nRevenue | $ 11,520 | $3,867 | $398 | $ 15,785\nCost of revenue | 429 | 1,321 | 115 | 1,865\nGross profit | $ 11,091 | $2,546 | $283 | $ 13,920\nGross profit as a percentage of revenue | 96 % | 66 % | 71 % | 88 %\nFiscal 2020\nRevenue | $9,233 | $3,125 | $510 | $ 12,868\nCost of revenue | 352 | 1,126 | 244 | 1,722\nGross profit | $8,881 | $1,999 | $266 | $ 11,146\nGross profit as a percentage of revenue | 96 % | 64 % | 52 % | 87 %\nWe generally categorize revenue by geographic area based on where the customer manages their utilization of our\nofferings. Revenue by geographic area for fiscal 2022, 2021 and 2020 were as follows:\n(in millions) | 2022 | 2021 | 2020\nAmericas:\nUnited States | $9,217"
+   }
+  ],
+  "calculation": "Operating Margin FY2022 = 6,098 / 17,606 = 34.6%; Operating Margin FY2021 = 5,802 / 15,785 = 36.8%",
+  "trace": [
+   {
+    "tool": "list_documents",
+    "input": {
+     "company": "Adobe"
+    },
+    "seconds": 0.01,
+    "is_error": false
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "operating income revenue FY2022",
+     "company": "Adobe",
+     "fiscal_year": 2022
+    },
+    "seconds": 1.67,
+    "is_error": false,
+    "returned": [
+     "ADOBE_2022_10K:p46:c1",
+     "ADOBE_2022_10K:p46:c0",
+     "ADOBE_2022_10K:p56:c0",
+     "ADOBE_2022_10K:p53:c0",
+     "ADOBE_2022_10K:p38:c2",
+     "ADOBE_2022_10K:p44:c0",
+     "ADOBE_2022_10K:p87:c0",
+     "ADOBE_2022_10K:p64:c0"
+    ]
+   },
+   {
+    "tool": "calculate",
+    "input": {
+     "expression": "6098 / 17606"
+    },
+    "seconds": 0.0,
+    "is_error": false,
+    "value": 0.34635919572872886
+   },
+   {
+    "tool": "calculate",
+    "input": {
+     "expression": "5802 / 15785"
+    },
+    "seconds": 0.0,
+    "is_error": false,
+    "value": 0.3675641431738993
+   },
+   {
+    "tool": "read_page",
+    "input": {
+     "doc_name": "ADOBE_2022_10K",
+     "page": 39
+    },
+    "seconds": 0.01,
+    "is_error": false,
+    "returned": [
+     "ADOBE_2022_10K:p38:page"
+    ]
+   }
+  ],
+  "tool_calls": 5,
+  "seconds": 145.55,
+  "usage": {
+   "input_tokens": 32122,
+   "output_tokens": 2007,
+   "cache_read": 0,
+   "cache_write": 0,
+   "cost_usd": 0.0,
+   "fallbacks": 0
+  },
+  "gold_answer": "No the operating margins of Adobe have recently declined from 36.8% in FY 2021 to 34.6% in FY2022. A drop by 2.2% in a year.",
+  "grade": "correct",
+  "id": "financebench_id_00438"
+ },
+ {
+  "question": "Is 3M a capital-intensive business based on FY2022 data?",
+  "answer": "No, 3M is not considered a capital-intensive business based on FY2022 data. Capital expenditures were $1,831 million, representing only 5.35% of revenue ($1,831 / $34,229 * 100 = 5.35%). While property, plant and equipment represents 56% of total assets ($25,998 / $46,455 * 100 = 55.96%), the low CapEx-to-revenue ratio indicates the company is not heavily reliant on capital-intensive operations.",
+  "status": "answered",
+  "citations": [
+   {
+    "evidence_id": "3M_2022_10K:p47:c0",
+    "doc_name": "3M_2022_10K",
+    "page": 48,
+    "text": "Table of Contents\n3M Company and Subsidiaries\nConsolidated Statement of Income\nYears ended December 31\n(Millions, except per share amounts) | 2022 | 2021 | 2020\nNet sales | $34,229 $35,355 $32,184\nOperating expenses\nCost of sales | 19,232 | 18,795 | 16,605\nSelling, general and administrative expenses | 9,049 | 7,197 | 6,929\nResearch, development and related expenses | 1,862 | 1,994 | 1,878\nGain on business divestitures | (2,724) | - | (389)\nGoodwill impairment expense | 271 | - | -\nTotal operating expenses | 27,690 | 27,986 | 25,023\nOperating income | 6,539 | 7,369 | 7,161\nOther expense (income), net | 147 | 165 | 366\nIncome before income taxes | 6,392 | 7,204 | 6,795\nProvision for income taxes | 612 | 1,285 | 1,337\nIncome of consolidated group | 5,780 | 5,919 | 5,458\nIncome (loss) from unconsolidated subsidiaries, net of taxes | 11 | 10 | (5)\nNet income including noncontrolling interest | 5,791 | 5,929 | 5,453\nLess: Net income (loss) attributable to noncontrolling interest | 14 | 8 | 4\nNet income attributable to 3M | $5,777 $5,921 $5,449\nWeighted average 3M common shares outstanding - basic | 566.0 | 579.0 | 577.6"
+   },
+   {
+    "evidence_id": "3M_2022_10K:p24:c0",
+    "doc_name": "3M_2022_10K",
+    "page": 25,
+    "text": "Table of Contents\nSales and operating income (loss) by business segment:\nThe following tables contain sales and operating income (loss) results by business segment for the years ended December 31, 2022 and 2021. Refer to the section entitled\n“Performance by Business Segment” later in MD&A for additional discussion concerning 2022 versus 2021 results, including Corporate and Unallocated. Refer to Note 19 for\nadditional information on business segments.\n2022 | 2021% change\nOperating | Operating | Operating Income\n(Dollars in millions) | Net Sales% of Total | Income (Loss) | Net Sales% of Total | Income (Loss) | Net Sales | (Loss)\nBusiness Segments\nSafety and Industrial | $11,604 | 33.9 % $1,199 $11,981 | 33.9 % $2,466 | (3.2)% | (51.4)%\nTransportation and Electronics | 8,902 | 26.0 | 1,012 | 9,262 | 26.2 | 1,880 | (3.9) | (46.2)\nHealth Care | 8,421 | 24.6 | 1,815 | 8,597 | 24.3 | 2,037 | (2.0) | (10.9)\nConsumer | 5,298 | 15.5 | 994 | 5,513 | 15.6 | 1,162 | (3.9) | (14.4)\nCorporate and Unallocated | 4 | - | 1,519 | 2 | - | (176)\nTotal Company | $34,229 | 100.0 % $6,539 $35,355 | 100.0 % $7,369"
+   },
+   {
+    "evidence_id": "3M_2022_10K:p122:c1",
+    "doc_name": "3M_2022_10K",
+    "page": 123,
+    "text": "[columns: Operating Performance | 2022 | 2021 | 2020]\nTotal corporate special items | 1,637 | (214) | 186\nOther corporate expense - net | (118) | 38 | (95)\nTotal Corporate and Unallocated | 1,519 | (176) | 91\nTotal Company operating income | 6,539 | 7,369 | 7,161\nOther expense/(income), net | 147 | 165 | 366\nIncome before income taxes | $6,392 $7,204 $6,795\nAssets | Depreciation & Amortization | Capital Expenditures\n(Millions) | 2022 | 2021 | 2022 | 2021 | 2020 | 2022 | 2021 | 2020\nSafety and Industrial | $11,730 $11,744 $566 $593 $562 $512 $339 $451\nTransportation and Electronics | 6,453 | 6,999 | 410 | 419 | 429 | 562 | 453 | 454\nHealth Care | 13,343 | 14,055 | 623 | 636 | 626 | 272 | 249 | 251\nConsumer | 2,753 | 2,783 | 148 | 147 | 140 | 146 | 109 | 120\nCorporate and Unallocated | 12,176 | 11,491 | 84 | 120 | 154 | 257 | 453 | 225\nTotal Company | $46,455 $47,072 $1,831 $1,915 $1,911 $1,749 $1,603 $1,501\nAssets subject to attribution to business segments largely include accounts receivable; inventories; property, plant and equipment; goodwill; intangible assets; and certain\nlimited other assets. All other items are reflected in Corporate"
+   },
+   {
+    "evidence_id": "3M_2022_10K:p67:c0",
+    "doc_name": "3M_2022_10K",
+    "page": 68,
+    "text": "Table of Contents\nNOTE 7. Supplemental Balance Sheet Information\nAdditional supplemental balance sheet information is provided in the table that follows.\n(Millions) | 2022 | 2021\nOther current assets\nDerivative assets-current | $162 $78\nInsurance related (receivables, prepaid expenses and other) | 103 | 110\nOther | 191 | 151\nTotal other current assets | $456 $339\nProperty, plant and equipment - at cost\nLand | $255 $312\nBuildings and leasehold improvements | 7,560 | 8,086\nMachinery and equipment | 16,455 | 17,305\nConstruction in progress | 1,728 | 1,510\nGross property, plant and equipment | 25,998 | 27,213\nAccumulated depreciation | (16,820) | (17,784)\nProperty, plant and equipment - net | $9,178 $9,429\nOther assets\nDeferred income taxes | $959 $581\nPrepaid pension and post retirement | 1,225 | 943\nInsurance related receivables and other | 73 | 51\nCash surrender value of life insurance policies | 265 | 261\nEquity method investments | 81 | 129\nEquity and other investments | 886 | 133\nOther | 782 | 510\nTotal other assets | $4,271 $2,608\nOther current liabilities\nAccrued rebates | $751 $731\nDeferred revenue | 538 | 529\nDerivative liabilities | 31 | 23\nEmployee benefits and withholdings | 247 | 219\nContingent liability claims and other | 534 | 487\nProperty, sales-related and other taxes | 224 | 326\nPension and postretirement benefits | 77 | 78\nOther | 788 | 798\nTotal other current liabilities"
+   }
+  ],
+  "calculation": "CapEx % of revenue = 1,831 / 34,229 * 100 = 5.35%; PPE % of total assets = 25,998 / 46,455 * 100 = 55.96%",
+  "trace": [
+   {
+    "tool": "list_documents",
+    "input": {
+     "company": "3M"
+    },
+    "seconds": 0.16,
+    "is_error": false
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "capital expenditures CapEx fixed assets depreciation",
+     "company": "3M",
+     "fiscal_year": 2022,
+     "doc_type": "10k"
+    },
+    "seconds": 2.38,
+    "is_error": false,
+    "returned": [
+     "3M_2022_10K:p122:c1",
+     "3M_2022_10K:p55:c3",
+     "3M_2022_10K:p53:c0",
+     "3M_2022_10K:p53:c1",
+     "3M_2022_10K:p122:c2",
+     "3M_2022_10K:p53:c2",
+     "3M_2022_10K:p67:c0",
+     "3M_2022_10K:p6:c2"
+    ]
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "revenue total revenue income statement 2022",
+     "company": "3M",
+     "fiscal_year": 2022,
+     "doc_type": "10k"
+    },
+    "seconds": 1.24,
+    "is_error": false,
+    "returned": [
+     "3M_2022_10K:p70:c0",
+     "3M_2022_10K:p64:c1",
+     "3M_2022_10K:p58:c1",
+     "3M_2022_10K:p69:c1",
+     "3M_2022_10K:p1:c1",
+     "3M_2022_10K:p122:c1",
+     "3M_2022_10K:p47:c0",
+     "3M_2022_10K:p24:c0"
+    ]
+   },
+   {
+    "tool": "calculate",
+    "input": {
+     "expression": "1831 / 34229 * 100"
+    },
+    "seconds": 0.0,
+    "is_error": false,
+    "value": 5.349265242922668
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "depreciation expense accumulated depreciation",
+     "company": "3M",
+     "fiscal_year": 2022,
+     "doc_type": "10k"
+    },
+    "seconds": 0.81,
+    "is_error": false,
+    "returned": [
+     "3M_2022_10K:p55:c2",
+     "3M_2022_10K:p53:c0",
+     "3M_2022_10K:p53:c1",
+     "3M_2022_10K:p53:c3",
+     "3M_2022_10K:p67:c0",
+     "3M_2022_10K:p49:c0",
+     "3M_2022_10K:p122:c2",
+     "3M_2022_10K:p122:c1"
+    ]
+   },
+   {
+    "tool": "calculate",
+    "input": {
+     "expression": "25998 / 46455 * 100"
+    },
+    "seconds": 0.0,
+    "is_error": false,
+    "value": 55.96383597029383
+   }
+  ],
+  "tool_calls": 6,
+  "seconds": 146.48,
+  "usage": {
+   "input_tokens": 65102,
+   "output_tokens": 3063,
+   "cache_read": 0,
+   "cache_write": 0,
+   "cost_usd": 0.0,
+   "fallbacks": 0
+  },
+  "gold_answer": "No, the company is managing its CAPEX and Fixed Assets pretty efficiently, which is evident from below key metrics:\nCAPEX/Revenue Ratio: 5.1%\nFixed assets/Total Assets: 20%\nReturn on Assets= 12.4%",
+  "grade": "correct",
+  "id": "financebench_id_00499"
+ },
+ {
+  "question": "What was the key agenda of the AMCOR's 8k filing dated 1st July 2022?",
+  "answer": "The key agenda of AMCOR's 8-K filing dated July 1, 2022 was the substitution of Amcor Flexibles North America, Inc. as substitute issuer for Amcor Finance (USA), Inc. under the guaranteed senior notes indentures (3.625% Notes due 2026 and 4.500% Notes due 2028).",
+  "status": "answered",
+  "citations": [
+   {
+    "evidence_id": "AMCOR_2022_8K_dated-2022-07-01:p0:page",
+    "doc_name": "AMCOR_2022_8K_dated-2022-07-01",
+    "page": 1,
+    "text": "UNITED STATES\nSECURITIES AND EXCHANGE COMMISSION\nWashington, D.C. 20549\nFORM 8-K\nCURRENT REPORT\nPursuant to Section 13 or 15(d)\nof the Securities Exchange Act of 1934\nDate of Report (Date of earliest event reported): July 1, 2022 (June 30, 2022)\nAMCOR PLC\n(Exact name of registrant as specified in its charter)\nJersey | 001-38932 | 98-1455367\nState or other jurisdiction | (Commission File Number) | (IRS Employer Identification\nof incorporation) | No.)\n83 Tower Road North\nWarmley, Bristol\nUnited Kingdom | BS30 8XP\n(Address of principal executive offices) | (Zip Code)\n+44 117 9753200\n(Registrant’s telephone number, including area code)\nCheck the appropriate box below if the Form 8-K filing is intended to simultaneously satisfy the filing obligation of the registrant under any of\nthe following provisions:\n¨ | Written communications pursuant to Rule 425 under the Securities Act (17 CFR 230.425)\n¨ | Soliciting material pursuant to Rule 14a-12 under the Exchange Act (17 CFR 240.14a-12)\n¨ | Pre-commencement communications pursuant to Rule 14d-2(b) under the Exchange Act (17 CFR 240.14d-2(b))\n¨ | Pre-commencement communications pursuant to Rule 13e-4(c) under the Exchange Act (17 CFR 240.13e-4(c))\nSecurities registered pursuant to Section 12(b) of the Act:\nName of each exchange on which\nTitle of each class | Trading Symbol(s) | registered\nOrdinary Shares, par value $0.01 per share | AMCR | New York Stock Exchange\n1.125% Guaranteed Senior Notes Due 2027 | AUKF/27 | New York Stock Exchan"
+   },
+   {
+    "evidence_id": "AMCOR_2022_8K_dated-2022-07-01:p1:page",
+    "doc_name": "AMCOR_2022_8K_dated-2022-07-01",
+    "page": 2,
+    "text": "Item 8.01 | Other Events.\nOn June 30, 2022, Amcor Finance (USA), Inc. (the “Former Issuer”) and Amcor Flexibles North America, Inc. (the “Substitute Issuer”),\neach a wholly-owned subsidiary of Amcor plc (the “Company”), entered into a (i) Second Supplemental Indenture (the “Second Supplemental\nIndenture”) with the Trustee (as defined below) with respect to the Indenture, dated as of April 28, 2016 (as amended and/or supplemented to\ndate, the “2016 Indenture” and, together with the Second Supplemental Indenture, the “2016 Indenture”), among the Former Issuer, the\nguarantors party thereto and Deutsche Bank Trust Company Americas, as trustee (the “Trustee”), governing the Former Issuer’s (a) 3.625%\nGuaranteed Senior Notes due 2026 (the “2026 Notes”) and (b) 4.500% Guaranteed Senior Notes due 2028 (the “2028 Notes” and, together with\nthe 2026 Notes, the “Existing Notes”) and (ii) First Supplemental Indenture (the “First Supplemental Indenture” and, together with the Second\nSupplemental Indenture, the “Supplemental Indentures”) with the Trustee with respect to the Indenture, dated as of June 13, 2019 (as amended\nand/or supplemented to date, the “2019 Indenture” and, together with the First Supplemental Indenture, the “2019 Indenture” and, together with\nthe 2016 Indenture, the “Indentures”), among the Former Issuer, the guarantors party thereto and the Trustee, governing the Former Issuer’s\n(a) 3.625% Guaranteed Senior Notes due 2026 (the “New 2026 Notes”) and (b) 4.500% Guaranteed"
+   }
+  ],
+  "calculation": "",
+  "trace": [
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "AMCOR 8-K filing July 1 2022 Item 1.01 key event",
+     "company": "AMCOR",
+     "fiscal_year": 2022,
+     "top_k": 5
+    },
+    "seconds": 0.52,
+    "is_error": false,
+    "returned": [
+     "AMCOR_2022_8K_dated-2022-07-01:p1:c0",
+     "AMCOR_2022_8K_dated-2022-07-01:p0:c0",
+     "AMCOR_2022_8K_dated-2022-07-01:p1:c2",
+     "AMCOR_2022_8K_dated-2022-07-01:p2:c0",
+     "AMCOR_2022_8K_dated-2022-07-01:p1:c3"
+    ]
+   },
+   {
+    "tool": "read_page",
+    "input": {
+     "doc_name": "AMCOR_2022_8K_dated-2022-07-01",
+     "page": 2
+    },
+    "seconds": 0.01,
+    "is_error": false,
+    "returned": [
+     "AMCOR_2022_8K_dated-2022-07-01:p1:page"
+    ]
+   },
+   {
+    "tool": "read_page",
+    "input": {
+     "doc_name": "AMCOR_2022_8K_dated-2022-07-01",
+     "page": 1
+    },
+    "seconds": 0.0,
+    "is_error": false,
+    "returned": [
+     "AMCOR_2022_8K_dated-2022-07-01:p0:page"
+    ]
+   }
+  ],
+  "tool_calls": 3,
+  "seconds": 117.69,
+  "usage": {
+   "input_tokens": 27060,
+   "output_tokens": 1740,
+   "cache_read": 0,
+   "cache_write": 0,
+   "cost_usd": 0.0,
+   "fallbacks": 0
+  },
+  "gold_answer": "Amcor Finance (USA), Inc. and Amcor Flexibles North America, Inc., entered into supplemental indentures relating to Guaranteed Senior Notes due 2026 and 2028. This involved the substitution of the Substitute Issuer (Amcor Flexibles North America) for the Former Issuer (Amcor Finance) and the assumption of covenants under the indentures. (In essence a novation agreement)",
+  "grade": "correct",
+  "id": "financebench_id_01935"
+ },
+ {
+  "question": "Does Adobe have an improving Free cashflow conversion as of FY2022?",
+  "answer": "Yes, Adobe has an improving free cashflow conversion as of FY2022. The ratio improved from 0.77 in FY2021 to 1.53 in FY2022.",
+  "status": "answered",
+  "citations": [
+   {
+    "evidence_id": "ADOBE_2022_10K:p56:c0",
+    "doc_name": "ADOBE_2022_10K",
+    "page": 57,
+    "text": "Table of Contents\nADOBE INC.\nCONSOLIDATED STATEMENTS OF CASH FLOWS\n(In millions)\nYears Ended\nDecember 2, | December 3, | November 27,\n2022 | 2021 | 2020\nCash flows from operating activities:\nNet income | $4,756 $4,822 $5,260\nAdjustments to reconcile net income to net cash provided by operating activities:\nDepreciation, amortization and accretion | 856 | 788 | 757\nStock-based compensation | 1,440 | 1,069 | 909\nReduction of operating lease right-of-use assets | 83 | 73 | 87\nDeferred income taxes | 328 | 183 | (1,501)\nUnrealized losses (gains) on investments, net | 29 | (4) | (11)\nOther non-cash items | 10 | 7 | 40\nChanges in operating assets and liabilities, net of acquired assets and\nassumed liabilities:\nTrade receivables, net | (198) | (430) | 106\nPrepaid expenses and other assets | (94) | (475) | (288)\nTrade payables | 66 | (20) | 96\nAccrued expenses and other liabilities | 7 | 162 | 86\nIncome taxes payable | 19 | 2 | (72)\nDeferred revenue | 536 | 1,053 | 258\nNet cash provided by operating activities | 7,838 | 7,230 | 5,727\nCash flows from investing activities:\nPurchases of short-term investments | (909) | (1,533) | (1,071)\nMaturities of short-term investments | 683 | 877 | 915\nProceeds from sales of short-term investments | 270 |"
+   },
+   {
+    "evidence_id": "ADOBE_2022_10K:p56:c1",
+    "doc_name": "ADOBE_2022_10K",
+    "page": 57,
+    "text": "[columns: 2022 | 2021 | 2020]\nNet cash provided by operating activities | 7,838 | 7,230 | 5,727\nCash flows from investing activities:\nPurchases of short-term investments | (909) | (1,533) | (1,071)\nMaturities of short-term investments | 683 | 877 | 915\nProceeds from sales of short-term investments | 270 | 191 | 167\nAcquisitions, net of cash acquired | (126) | (2,682) | -\nPurchases of property and equipment | (442) | (348) | (419)\nPurchases of long-term investments, intangibles and other assets | (46) | (42) | (15)\nProceeds from sales of long-term investments and other assets | - | - | 9\nNet cash used for investing activities | (570) | (3,537) | (414)\nCash flows from financing activities:\nRepurchases of common stock | (6,550) | (3,950) | (3,050)\nProceeds from re-issuance of treasury stock | 278 | 291 | 270\nTaxes paid related to net share settlement of equity awards | (518) | (719) | (681)\nProceeds from issuance of debt | - | - | 3,144\nRepayment of debt | - | - | (3,150)\nOther financing activities, net | (35) | 77 | (21)\nNet cash used for financing activities | (6,825) | (4,301) | (3,488)\nEffect of foreign currency exchange rates on cash and cash equivalents | (51) | (26) | 3\nNet change in cash and cash equivalents | 392 | (634) | 1,828"
+   }
+  ],
+  "calculation": "FY2022: (7838 - 570) / 4756 = 1.53; FY2021: (7230 - 3537) / 4822 = 0.77",
+  "trace": [
+   {
+    "tool": "list_documents",
+    "input": {
+     "company": "Adobe Inc."
+    },
+    "seconds": 0.0,
+    "is_error": false
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "Free Cash Flow Net Income",
+     "company": "Adobe Inc.",
+     "fiscal_year": 2022
+    },
+    "seconds": 1.68,
+    "is_error": false,
+    "returned": [
+     "ADOBE_2022_10K:p46:c0",
+     "ADOBE_2022_10K:p46:c1",
+     "ADOBE_2022_10K:p56:c0",
+     "ADOBE_2022_10K:p56:c1",
+     "ADOBE_2022_10K:p56:c2",
+     "ADOBE_2022_10K:p72:c2",
+     "ADOBE_2022_10K:p73:c1",
+     "ADOBE_2022_10K:p68:c1"
+    ]
+   },
+   {
+    "tool": "calculate",
+    "input": {
+     "expression": "(7838 - 570) / 4756"
+    },
+    "seconds": 0.0,
+    "is_error": false,
+    "value": 1.528174936921783
+   },
+   {
+    "tool": "calculate",
+    "input": {
+     "expression": "(7230 - 3537) / 4822"
+    },
+    "seconds": 0.0,
+    "is_error": false,
+    "value": 0.7658647863956864
+   }
+  ],
+  "tool_calls": 4,
+  "seconds": 99.07,
+  "usage": {
+   "input_tokens": 15705,
+   "output_tokens": 1451,
+   "cache_read": 0,
+   "cache_write": 0,
+   "cost_usd": 0.0,
+   "fallbacks": 0
+  },
+  "gold_answer": "Yes, the FCF conversion (using net income as the denominator) for Adobe has improved by ~13% from 143% in 2021 to 156% in 2022",
+  "grade": "incorrect",
+  "id": "financebench_id_00591"
+ },
+ {
+  "question": "Does 3M maintain a stable trend of dividend distribution?",
+  "answer": "I could not produce a verified answer from the filings.",
+  "status": "refused",
+  "citations": [],
+  "calculation": "",
+  "trace": [
+   {
+    "tool": "list_documents",
+    "input": {
+     "company": "3M"
+    },
+    "seconds": 0.01,
+    "is_error": false
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "dividend per share history payout ratio",
+     "company": "3M"
+    },
+    "seconds": 1.0,
+    "is_error": false,
+    "returned": [
+     "3M_2022_10K:p40:c0",
+     "3M_2023Q2_10Q:p13:c0",
+     "3M_2018_10K:p81:c0",
+     "3M_2022_10K:p50:c2",
+     "3M_2018_10K:p58:c2",
+     "3M_2018_10K:p47:c3",
+     "3M_2018_10K:p146:c1",
+     "3M_2022_10K:p50:c1"
+    ]
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "dividend payout ratio",
+     "company": "3M"
+    },
+    "seconds": 0.94,
+    "is_error": false,
+    "returned": [
+     "3M_2023Q2_10Q:p69:c4",
+     "3M_2018_10K:p81:c0",
+     "3M_2023Q2_10Q:p13:c0",
+     "3M_2018_10K:p47:c3",
+     "3M_2022_10K:p17:c0",
+     "3M_2022_10K:p50:c1",
+     "3M_2022_10K:p68:c0",
+     "3M_2022_10K:p40:c0"
+    ]
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "dividend policy stable consistent",
+     "company": "3M"
+    },
+    "seconds": 0.98,
+    "is_error": false,
+    "returned": [
+     "3M_2018_10K:p25:c1",
+     "3M_2023Q2_10Q:p69:c0",
+     "3M_2018_10K:p88:c2",
+     "3M_2022_10K:p139:c0",
+     "3M_2022_10K:p50:c1",
+     "3M_2018_10K:p146:c0",
+     "3M_2022_10K:p50:c2",
+     "3M_2022_10K:p224:c0"
+    ]
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "dividend per share 2021 2022 2023",
+     "company": "3M"
+    },
+    "seconds": 1.0,
+    "is_error": false,
+    "returned": [
+     "3M_2023Q2_10Q:p13:c0",
+     "3M_2022_10K:p17:c0",
+     "3M_2022_10K:p68:c0",
+     "3M_2022_10K:p25:c2",
+     "3M_2022_10K:p50:c2",
+     "3M_2023Q2_10Q:p61:c0",
+     "3M_2022_10K:p50:c1",
+     "3M_2023Q2_10Q:p14:c1"
+    ]
+   }
+  ],
+  "tool_calls": 5,
+  "seconds": 236.91,
+  "usage": {
+   "input_tokens": 109926,
+   "output_tokens": 3530,
+   "cache_read": 0,
+   "cache_write": 0,
+   "cost_usd": 0.0,
+   "fallbacks": 0
+  },
+  "gold_answer": "Yes, not only they distribute the dividends on a routine basis, 3M has also been increasing the per share dividend for consecutive 65 years",
+  "grade": "refusal",
+  "id": "financebench_id_01858"
+ },
+ {
+  "question": "Does 3M maintain a stable trend of dividend distribution?",
+  "answer": "I could not produce a verified answer from the filings.",
+  "status": "refused",
+  "citations": [],
+  "calculation": "",
+  "trace": [
+   {
+    "tool": "list_documents",
+    "input": {
+     "company": "3M"
+    },
+    "seconds": 0.01,
+    "is_error": false
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "dividend per share history payout ratio",
+     "company": "3M"
+    },
+    "seconds": 1.0,
+    "is_error": false,
+    "returned": [
+     "3M_2022_10K:p40:c0",
+     "3M_2023Q2_10Q:p13:c0",
+     "3M_2018_10K:p81:c0",
+     "3M_2022_10K:p50:c2",
+     "3M_2018_10K:p58:c2",
+     "3M_2018_10K:p47:c3",
+     "3M_2018_10K:p146:c1",
+     "3M_2022_10K:p50:c1"
+    ]
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "dividend payout ratio",
+     "company": "3M"
+    },
+    "seconds": 0.94,
+    "is_error": false,
+    "returned": [
+     "3M_2023Q2_10Q:p69:c4",
+     "3M_2018_10K:p81:c0",
+     "3M_2023Q2_10Q:p13:c0",
+     "3M_2018_10K:p47:c3",
+     "3M_2022_10K:p17:c0",
+     "3M_2022_10K:p50:c1",
+     "3M_2022_10K:p68:c0",
+     "3M_2022_10K:p40:c0"
+    ]
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "dividend policy stable consistent",
+     "company": "3M"
+    },
+    "seconds": 0.98,
+    "is_error": false,
+    "returned": [
+     "3M_2018_10K:p25:c1",
+     "3M_2023Q2_10Q:p69:c0",
+     "3M_2018_10K:p88:c2",
+     "3M_2022_10K:p139:c0",
+     "3M_2022_10K:p50:c1",
+     "3M_2018_10K:p146:c0",
+     "3M_2022_10K:p50:c2",
+     "3M_2022_10K:p224:c0"
+    ]
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "dividend per share 2021 2022 2023",
+     "company": "3M"
+    },
+    "seconds": 1.0,
+    "is_error": false,
+    "returned": [
+     "3M_2023Q2_10Q:p13:c0",
+     "3M_2022_10K:p17:c0",
+     "3M_2022_10K:p68:c0",
+     "3M_2022_10K:p25:c2",
+     "3M_2022_10K:p50:c2",
+     "3M_2023Q2_10Q:p61:c0",
+     "3M_2022_10K:p50:c1",
+     "3M_2023Q2_10Q:p14:c1"
+    ]
+   }
+  ],
+  "tool_calls": 5,
+  "seconds": 236.91,
+  "usage": {
+   "input_tokens": 109926,
+   "output_tokens": 3530,
+   "cache_read": 0,
+   "cache_write": 0,
+   "cost_usd": 0.0,
+   "fallbacks": 0
+  },
+  "gold_answer": "Yes, not only they distribute the dividends on a routine basis, 3M has also been increasing the per share dividend for consecutive 65 years",
+  "grade": "refusal",
+  "id": "financebench_id_01858"
+ }
+]

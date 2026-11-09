@@ -1,0 +1,1035 @@
+[
+ {
+  "question": "What is the FY2019 fixed asset turnover ratio for Activision Blizzard? Fixed asset turnover ratio is defined as: FY2019 revenue / (average PP&E between FY2018 and FY2019). Round your answer to two decimal places. Base your judgments on the information provided primarily in the statement of income and the statement of financial position.",
+  "answer": "24.26",
+  "status": "answered",
+  "citations": [
+   {
+    "evidence_id": "ACTIVISIONBLIZZARD_2019_10K:p40:c0",
+    "doc_name": "ACTIVISIONBLIZZARD_2019_10K",
+    "page": 41,
+    "text": "Table of Contents\nReconciliations of total segment net revenues and total segment operating income to consolidated net revenues and consolidated income before income tax\nexpense are presented in the table below (amounts in millions):\nFor the Years Ended December 31,\n2019 | 2018\nReconciliation to consolidated net revenues:\nSegment net revenues | $5,969 | $6,835\nRevenues from non-reportable segments (1) | 462 | 480\nNet effect from recognition (deferral) of deferred net revenues (2) | 101 | 238\nElimination of intersegment revenues (3) | (43) | (53)\nConsolidated net revenues | $6,489 | $7,500\nReconciliation to consolidated income before income tax expense:\nSegment operating income | $2,054 | $2,446\nOperating income (loss) from non-reportable segments (1) | 24 | 31\nNet effect from recognition (deferral) of deferred net revenues and related cost of revenues (2) | 52 | 100\nShare-based compensation expense | (166) | (209)\nAmortization of intangible assets | (203) | (370)\nRestructuring and related costs (4) | (137) | (10)\nDiscrete tax-related items (5) | (17) | -\nConsolidated operating income | 1,607 | 1,988\nInterest and other expense (income), net | (26) | 71\nLoss on extinguishment of debt | - | 40\nConsolidated income before income tax expense | $1,633 | $1,877\n(1) Includes other income and expenses from operating segments managed outside the reportable segments, including our Distribution business. Also includes\nunallocated"
+   },
+   {
+    "evidence_id": "ACTIVISIONBLIZZARD_2019_10K:p68:c0",
+    "doc_name": "ACTIVISIONBLIZZARD_2019_10K",
+    "page": 69,
+    "text": "Table of Contents\nACTIVISION BLIZZARD, INC. AND SUBSIDIARIES\nCONSOLIDATED BALANCE SHEETS\n(Amounts in millions, except share data)\nAt December 31, 2019 | At December 31, 2018\nAssets\nCurrent assets:\nCash and cash equivalents | $5,794 | $4,225\nAccounts receivable, net of allowances of $132 and $190, at December 31, 2019 and December 31, 2018, respectively | 848 | 1,035\nInventories, net | 32 | 43\nSoftware development | 322 | 264\nOther current assets | 296 | 539\nTotal current assets | 7,292 | 6,106\nSoftware development | 54 | 65\nProperty and equipment, net | 253 | 282\nDeferred income taxes, net | 1,293 | 458\nOther assets | 658 | 482\nIntangible assets, net | 531 | 735\nGoodwill | 9,764 | 9,762\nTotal assets | $19,845 | $17,890\nLiabilities and Shareholders’ Equity\nCurrent liabilities:\nAccounts payable | $292 | $253\nDeferred revenues | 1,375 | 1,493\nAccrued expenses and other liabilities | 1,248 | 896\nTotal current liabilities | 2,915 | 2,642\nLong-term debt, net | 2,675 | 2,671\nDeferred income taxes, net | 505 | 18\nOther liabilities | 945 | 1,167\nTotal liabilities | 7,040 | 6,498\nCommitments and contingencies (Note 23)\nShareholders’ equity:\nCommon stock, $0.000001 par value, 2,400,000,000 shares authorized, 1,197,436,644"
+   },
+   {
+    "evidence_id": "ACTIVISIONBLIZZARD_2019_10K:p89:c0",
+    "doc_name": "ACTIVISIONBLIZZARD_2019_10K",
+    "page": 90,
+    "text": "Table of Contents\nACTIVISION BLIZZARD, INC. AND SUBSIDIARIES\nNotes to Consolidated Financial Statements (continued)\nAmortization of capitalized software development costs and intellectual property licenses was as follows (amounts in millions):\nFor the Years Ended December 31,\n2019 | 2018 | 2017\nAmortization of capitalized software development costs and intellectual property licenses | $241 | $501 | $314\nWrite-offs and impairments of capitalized software development costs and intellectual property licenses were not material for the years ended December 31,\n2019, 2018, and 2017.\n6. Property and Equipment, Net\nProperty and equipment, net was comprised of the following (amounts in millions):\nAt December 31,\n2019 | 2018\nLand | $1 | $1\nBuildings | 4 | 4\nLeasehold improvements | 252 | 248\nComputer equipment | 654 | 700\nOffice furniture and other equipment | 91 | 99\nTotal cost of property and equipment | 1,002 | 1,052\nLess accumulated depreciation | (749) | (770)\nProperty and equipment, net | $253 | $282\nDepreciation expense for the years ended December 31, 2019, 2018, and 2017 was $124 million, $138 million, and $130 million, respectively.\nF-25"
+   }
+  ],
+  "calculation": "FY2019 Revenue / ((FY2019 PP&E + FY2018 PP&E) / 2) = 6489 / ((253 + 282) / 2) = 24.26",
+  "trace": [
+   {
+    "tool": "list_documents",
+    "input": {
+     "company": "Activision Blizzard"
+    },
+    "seconds": 0.02,
+    "is_error": false
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "revenue FY2019 income statement statement of income",
+     "company": "Activision Blizzard",
+     "doc_type": "10k",
+     "top_k": 5
+    },
+    "seconds": 1.55,
+    "is_error": false,
+    "returned": [
+     "ACTIVISIONBLIZZARD_2019_10K:p40:c1",
+     "ACTIVISIONBLIZZARD_2019_10K:p47:c0",
+     "ACTIVISIONBLIZZARD_2019_10K:p40:c0",
+     "ACTIVISIONBLIZZARD_2019_10K:p101:c0",
+     "ACTIVISIONBLIZZARD_2019_10K:p56:c0"
+    ]
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "Property Plant and Equipment net PPE balance sheet",
+     "company": "Activision Blizzard",
+     "fiscal_year": 2019,
+     "doc_type": "10k",
+     "top_k": 5
+    },
+    "seconds": 1.54,
+    "is_error": false,
+    "returned": [
+     "ACTIVISIONBLIZZARD_2019_10K:p89:c0",
+     "ACTIVISIONBLIZZARD_2019_10K:p108:c0",
+     "ACTIVISIONBLIZZARD_2019_10K:p77:c2",
+     "ACTIVISIONBLIZZARD_2019_10K:p68:c0",
+     "ACTIVISIONBLIZZARD_2019_10K:p71:c1"
+    ]
+   },
+   {
+    "tool": "calculate",
+    "input": {
+     "expression": "6489 / ((253 + 282) / 2)"
+    },
+    "seconds": 0.0,
+    "is_error": false,
+    "value": 24.257943925233644
+   }
+  ],
+  "tool_calls": 4,
+  "seconds": 77.1,
+  "usage": {
+   "input_tokens": 41020,
+   "output_tokens": 2370,
+   "cache_read": 0,
+   "cache_write": 0,
+   "cost_usd": 0.0,
+   "fallbacks": 0
+  },
+  "gold_answer": "24.26",
+  "grade": "correct",
+  "id": "financebench_id_02987"
+ },
+ {
+  "question": "What is the FY2018 capital expenditure amount (in USD millions) for 3M? Give a response to the question by relying on the details shown in the cash flow statement.",
+  "answer": "$1,577 million",
+  "status": "answered",
+  "citations": [
+   {
+    "evidence_id": "3M_2018_10K:p45:c2",
+    "doc_name": "3M_2018_10K",
+    "page": 46,
+    "text": "defined benefit pension plan, contributing to a year-on-year increase in pension and postretirement contributions of $584 million. The combination of\naccounts receivable, inventories and accounts payable increased working capital by $608 million in 2017, compared to working capital increases of $108\nmillion in 2016. In 2017, year-on-year decreases in income tax payments (net of refunds) increased operating cash flows by $284 million.\nCash Flows from Investing Activities:\nYears ended December 31\n(Millions) | 2018 | 2017 | 2016\nPurchases of property, plant and equipment (PP&E) | $(1,577) $(1,373) $(1,420)\nProceeds from sale of PP&E and other assets | 262 | 49 | 58\nAcquisitions, net of cash acquired | 13 | (2,023) | (16)\nPurchases and proceeds from maturities and sale of marketable\nsecurities and investments, net | 669 | (798) | (163)\nProceeds from sale of businesses, net of cash sold | 846 | 1,065 | 142\nOther - net | 9 | (6) | (4)\nNet cash provided by (used in) investing activities | $222 | $(3,086) $(1,403)\n46"
+   }
+  ],
+  "calculation": "Purchases of property, plant and equipment (PP&E) = $(1,577) million",
+  "trace": [
+   {
+    "tool": "list_documents",
+    "input": {
+     "company": "3M"
+    },
+    "seconds": 0.06,
+    "is_error": false
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "capital expenditures capital spending",
+     "company": "3M",
+     "fiscal_year": 2018,
+     "doc_type": "10K"
+    },
+    "seconds": 0.01,
+    "is_error": true,
+    "error": "Error executing tool search_documents: 1 validation error for search_documentsArguments\ndoc_type\n  Input should be '10k', '10q', '8k' or 'earnings' [type=literal_error, input_value='10K', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/literal_error"
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "capital expenditures capital spending",
+     "company": "3M",
+     "fiscal_year": 2018,
+     "doc_type": "10k"
+    },
+    "seconds": 2.89,
+    "is_error": false,
+    "returned": [
+     "3M_2018_10K:p6:c2",
+     "3M_2018_10K:p38:c0",
+     "3M_2018_10K:p46:c0",
+     "3M_2018_10K:p38:c1",
+     "3M_2018_10K:p42:c0",
+     "3M_2018_10K:p125:c0",
+     "3M_2018_10K:p49:c1",
+     "3M_2018_10K:p64:c1"
+    ]
+   },
+   {
+    "tool": "read_page",
+    "input": {
+     "doc_name": "3M_2018_10K",
+     "page": 126
+    },
+    "seconds": 0.02,
+    "is_error": false,
+    "returned": [
+     "3M_2018_10K:p125:page"
+    ]
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "Cash Flow Statement investing activities capital expenditures 2018",
+     "company": "3M",
+     "fiscal_year": 2018
+    },
+    "seconds": 1.39,
+    "is_error": false,
+    "returned": [
+     "3M_2018_10K:p45:c0",
+     "3M_2018_10K:p45:c2",
+     "3M_2018_10K:p59:c1",
+     "3M_2018_10K:p82:c1",
+     "3M_2018_10K:p48:c1",
+     "3M_2018_10K:p38:c1",
+     "3M_2018_10K:p59:c2",
+     "3M_2018_10K:p59:c0"
+    ]
+   }
+  ],
+  "tool_calls": 5,
+  "seconds": 47.47,
+  "usage": {
+   "input_tokens": 29800,
+   "output_tokens": 1209,
+   "cache_read": 0,
+   "cache_write": 0,
+   "cost_usd": 0.0,
+   "fallbacks": 0
+  },
+  "gold_answer": "$1577.00",
+  "grade": "correct",
+  "id": "financebench_id_03029"
+ },
+ {
+  "question": "What is Lockheed Martin's FY2021 net working capital? Define net working capital as total current assets less total current liabilities. Answer in USD millions. Respond to the question by assuming the perspective of an investment analyst who can only use the details shown within the balance sheet.",
+  "answer": "$5,818 million",
+  "status": "answered",
+  "citations": [
+   {
+    "evidence_id": "LOCKHEEDMARTIN_2021_10K:p67:c0",
+    "doc_name": "LOCKHEEDMARTIN_2021_10K",
+    "page": 68,
+    "text": "Table of Contents\nLockheed Martin Corporation\nConsolidated Balance Sheets\n(in millions, except par value)\nDecember 31,\n2021 | 2020\nAssets\nCurrent assets\nCash and cash equivalents | $3,604 $3,160\nReceivables, net | 1,963 | 1,978\nContract assets | 10,579 | 9,545\nInventories | 2,981 | 3,545\nOther current assets | 688 | 1,150\nTotal current assets | 19,815 | 19,378\nProperty, plant and equipment, net | 7,597 | 7,213\nGoodwill | 10,813 | 10,806\nIntangible assets, net | 2,706 | 3,012\nDeferred income taxes | 2,290 | 3,475\nOther noncurrent assets | 7,652 | 6,826\nTotal assets | $50,873 $50,710\nLiabilities and equity\nCurrent liabilities\nAccounts payable | $780 $880\nSalaries, benefits and payroll taxes | 3,108 | 3,163\nContract liabilities | 8,107 | 7,545\nCurrent maturities of long-term debt | 6 | 500\nOther current liabilities | 1,996 | 1,845\nTotal current liabilities | 13,997 | 13,933\nLong-term debt, net | 11,670 | 11,669\nAccrued pension liabilities | 8,319 | 12,874\nOther noncurrent liabilities | 5,928 | 6,196\nTotal liabilities | 39,914 | 44,672\nStockholders’ equity\nCommon stock, $1 par value per share | 271 | 279\nAdditional paid-in capital | 94"
+   },
+   {
+    "evidence_id": "LOCKHEEDMARTIN_2021_10K:p29:c1",
+    "doc_name": "LOCKHEEDMARTIN_2021_10K",
+    "page": 30,
+    "text": "[columns: (In millions, except per share data) | 2021 | 2020 | 2019 | 2018 | 2017]\nDiluted (a)(b)(c)(d)(e)(f)(g)(i) | 22.76 | 24.50 | 21.95 | 17.59 | 6.50\nEarnings (loss) earnings from discontinued operations per common share\nBasic | - | (0.20) | - | - | 0.26\nDiluted | - | (0.20) | - | - | 0.25\nEarnings per common share\nBasic (a)(b)(c)(d)(e)(f)(g)(i) | 22.85 | 24.40 | 22.09 | 17.74 | 6.82\nDiluted (a)(b)(c)(d)(e)(f)(g)(i) | 22.76 | 24.30 | 21.95 | 17.59 | 6.75\nCash dividends declared per common share | $10.60 $9.80 $9.00 $8.20 $7.46\nBalance sheet\nCash, cash equivalents and short-term investments | $3,604 $3,160 $1,514 $772 $2,861\nTotal current assets | 19,815 | 19,378 | 17,095 | 16,103 | 17,505\nGoodwill | 10,813 | 10,806 | 10,604 | 10,769 | 10,807\nTotal assets (h) | 50,873 | 50,710 | 47,528 | 44,876 | 46,620\nTotal current liabilities | 13,997 | 13,933 | 13,972 | 14,398 | 12,913\nTotal debt, net | 11,676 | 12,169 | 12,654 | 14,104"
+   }
+  ],
+  "calculation": "Total Current Assets ($19,815 million) - Total Current Liabilities ($13,997 million) = $5,818 million",
+  "trace": [
+   {
+    "tool": "list_documents",
+    "input": {
+     "company": "Lockheed Martin"
+    },
+    "seconds": 0.01,
+    "is_error": false
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "total current assets current liabilities balance sheet",
+     "company": "Lockheed Martin",
+     "fiscal_year": 2021,
+     "doc_type": "10k"
+    },
+    "seconds": 1.58,
+    "is_error": false,
+    "returned": [
+     "LOCKHEEDMARTIN_2021_10K:p67:c0",
+     "LOCKHEEDMARTIN_2021_10K:p29:c1",
+     "LOCKHEEDMARTIN_2021_10K:p75:c1",
+     "LOCKHEEDMARTIN_2021_10K:p29:c2",
+     "LOCKHEEDMARTIN_2021_10K:p104:c0",
+     "LOCKHEEDMARTIN_2021_10K:p77:c1",
+     "LOCKHEEDMARTIN_2021_10K:p78:c1",
+     "LOCKHEEDMARTIN_2021_10K:p22:c0"
+    ]
+   },
+   {
+    "tool": "calculate",
+    "input": {
+     "expression": "19815 - 13997"
+    },
+    "seconds": 0.0,
+    "is_error": false,
+    "value": 5818.0
+   }
+  ],
+  "tool_calls": 3,
+  "seconds": 34.74,
+  "usage": {
+   "input_tokens": 16196,
+   "output_tokens": 972,
+   "cache_read": 0,
+   "cache_write": 0,
+   "cost_usd": 0.0,
+   "fallbacks": 0
+  },
+  "gold_answer": "$5818.00",
+  "grade": "correct",
+  "id": "financebench_id_03031"
+ },
+ {
+  "question": "Does Adobe have an improving operating margin profile as of FY2022? If operating margin is not a useful metric for a company like this, then state that and explain why.",
+  "answer": "No, Adobe does not have an improving operating margin profile as of FY2022. Operating margin declined from 36.76% in FY2021 to 34.64% in FY2022.",
+  "status": "answered",
+  "citations": [
+   {
+    "evidence_id": "ADOBE_2022_10K:p53:c0",
+    "doc_name": "ADOBE_2022_10K",
+    "page": 54,
+    "text": "Table of Contents\nADOBE INC.\nCONSOLIDATED STATEMENTS OF INCOME\n(In millions, except per share data)\nYears Ended\nDecember 2, | December 3, | November 27,\n2022 | 2021 | 2020\nRevenue:\nSubscription | $16,388 $14,573 $11,626\nProduct | 532 | 555 | 507\nServices and other | 686 | 657 | 735\nTotal revenue | 17,606 | 15,785 | 12,868\nCost of revenue:\nSubscription | 1,646 | 1,374 | 1,108\nProduct | 35 | 41 | 36\nServices and other | 484 | 450 | 578\nTotal cost of revenue | 2,165 | 1,865 | 1,722\nGross profit | 15,441 | 13,920 | 11,146\nOperating expenses:\nResearch and development | 2,987 | 2,540 | 2,188\nSales and marketing | 4,968 | 4,321 | 3,591\nGeneral and administrative | 1,219 | 1,085 | 968\nAmortization of intangibles | 169 | 172 | 162\nTotal operating expenses | 9,343 | 8,118 | 6,909\nOperating income | 6,098 | 5,802 | 4,237\nNon-operating income (expense):\nInterest expense | (112) | (113) | (116)\nInvestment gains (losses), net | (19) | 16 | 13\nOther income (expense), net | 41 | - | 42\nTotal non-operating income (expense), net | (90) | (97) | (61)\nIncome before income taxes | 6,008 | 5,705 | 4,176"
+   }
+  ],
+  "calculation": "Operating Margin FY2021 = (5802 / 15785) * 100 = 36.76%; Operating Margin FY2022 = (6098 / 17606) * 100 = 34.64%",
+  "trace": [
+   {
+    "tool": "list_documents",
+    "input": {
+     "company": "Adobe Inc."
+    },
+    "seconds": 0.01,
+    "is_error": false
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "Operating Income Total Revenue FY2022 Operating Expenses Cost of Revenue Adobe",
+     "company": "Adobe",
+     "doc_type": "10K"
+    },
+    "seconds": 0.02,
+    "is_error": true,
+    "error": "Error executing tool search_documents: 1 validation error for search_documentsArguments\ndoc_type\n  Input should be '10k', '10q', '8k' or 'earnings' [type=literal_error, input_value='10K', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/literal_error"
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "Operating Income Total Revenue FY2022 Operating Expenses Cost of Revenue Adobe",
+     "company": "Adobe",
+     "doc_type": "10k"
+    },
+    "seconds": 1.86,
+    "is_error": false,
+    "returned": [
+     "ADOBE_2022_10K:p53:c0",
+     "ADOBE_2022_10K:p39:c1",
+     "ADOBE_2022_10K:p42:c1",
+     "ADOBE_2022_10K:p64:c0",
+     "ADOBE_2022_10K:p42:c0",
+     "ADOBE_2022_10K:p87:c0",
+     "ADOBE_2017_10K:p57:c1",
+     "ADOBE_2022_10K:p56:c0"
+    ]
+   },
+   {
+    "tool": "calculate",
+    "input": {
+     "expression": "(6098 / 17606) * 100"
+    },
+    "seconds": 0.01,
+    "is_error": false,
+    "value": 34.635919572872886
+   },
+   {
+    "tool": "calculate",
+    "input": {
+     "expression": "(5802 / 15785) * 100"
+    },
+    "seconds": 0.0,
+    "is_error": false,
+    "value": 36.75641431738993
+   },
+   {
+    "tool": "read_page",
+    "input": {
+     "doc_name": "ADOBE_2022_10K",
+     "page": 40
+    },
+    "seconds": 0.01,
+    "is_error": false,
+    "returned": [
+     "ADOBE_2022_10K:p39:page"
+    ]
+   }
+  ],
+  "tool_calls": 6,
+  "seconds": 81.6,
+  "usage": {
+   "input_tokens": 35885,
+   "output_tokens": 2607,
+   "cache_read": 0,
+   "cache_write": 0,
+   "cost_usd": 0.0,
+   "fallbacks": 0
+  },
+  "gold_answer": "No the operating margins of Adobe have recently declined from 36.8% in FY 2021 to 34.6% in FY2022. A drop by 2.2% in a year.",
+  "grade": "correct",
+  "id": "financebench_id_00438"
+ },
+ {
+  "question": "Which debt securities are registered to trade on a national securities exchange under American Express' name as of 2022?",
+  "answer": "No debt securities are registered to trade on a national securities exchange under American Express' name as of 2022. The 2022 10-K filing shows only common shares (AXP) are registered pursuant to Section 12(b) on the New York Stock Exchange, and none are registered pursuant to Section 12(g).",
+  "status": "answered",
+  "citations": [
+   {
+    "evidence_id": "AMERICANEXPRESS_2022_10K:p0:c0",
+    "doc_name": "AMERICANEXPRESS_2022_10K",
+    "page": 1,
+    "text": "UNITED STATES\nSECURITIES AND EXCHANGE COMMISSION\nWashington, D.C. 20549\nForm 10-K\n☑ ANNUAL REPORT PURSUANT TO SECTION 13 OR 15(d) OF THE SECURITIES EXCHANGE ACT OF 1934\nFor the fiscal year ended December 31, 2022\nOR\n☐ TRANSITION REPORT PURSUANT TO SECTION 13 OR 15(d) OF THE SECURITIES EXCHANGE ACT OF 1934\nFor the transition period from | to\nCommission File No. 1-7657\nAmerican Express Company\n(Exact name of registrant as specified in its charter)\nNew York | 13-4922250\n(State or other jurisdiction of incorporation or organization) | (I.R.S. Employer Identification No.)\n200 Vesey Street\nNew York, New York | 10285\n(Address of principal executive offices) | (Zip Code)\nRegistrant’s telephone number, including area code: (212) 640-2000\nSecurities registered pursuant to Section 12(b) of the Act:\nTitle of each class | Trading Symbol(s) | Name of each exchange on which registered\nCommon Shares (par value $0.20 per Share) | AXP | New York Stock Exchange\nSecurities registered pursuant to section 12(g) of the Act: None\nIndicate by check mark if the registrant is a well-known seasoned issuer, as defined in Rule 405 of the Securities Act. Yes þ No o\nIndicate by check mark if the registrant is not required to file reports pursuant to Section 13 or Section 15(d) of the Act. Yes o No þ\nIndicate by check mark whether the registrant (1) has filed all reports required to be filed by Section 13 or 15(d) of the Securities Exchange Act of 1934 during the preceding 12 months (or\nfor such shorter peri"
+   },
+   {
+    "evidence_id": "AMERICANEXPRESS_2022_10K:p0:page",
+    "doc_name": "AMERICANEXPRESS_2022_10K",
+    "page": 1,
+    "text": "UNITED STATES\nSECURITIES AND EXCHANGE COMMISSION\nWashington, D.C. 20549\nForm 10-K\n☑ ANNUAL REPORT PURSUANT TO SECTION 13 OR 15(d) OF THE SECURITIES EXCHANGE ACT OF 1934\nFor the fiscal year ended December 31, 2022\nOR\n☐ TRANSITION REPORT PURSUANT TO SECTION 13 OR 15(d) OF THE SECURITIES EXCHANGE ACT OF 1934\nFor the transition period from | to\nCommission File No. 1-7657\nAmerican Express Company\n(Exact name of registrant as specified in its charter)\nNew York | 13-4922250\n(State or other jurisdiction of incorporation or organization) | (I.R.S. Employer Identification No.)\n200 Vesey Street\nNew York, New York | 10285\n(Address of principal executive offices) | (Zip Code)\nRegistrant’s telephone number, including area code: (212) 640-2000\nSecurities registered pursuant to Section 12(b) of the Act:\nTitle of each class | Trading Symbol(s) | Name of each exchange on which registered\nCommon Shares (par value $0.20 per Share) | AXP | New York Stock Exchange\nSecurities registered pursuant to section 12(g) of the Act: None\nIndicate by check mark if the registrant is a well-known seasoned issuer, as defined in Rule 405 of the Securities Act. Yes þ No o\nIndicate by check mark if the registrant is not required to file reports pursuant to Section 13 or Section 15(d) of the Act. Yes o No þ\nIndicate by check mark whether the registrant (1) has filed all reports required to be filed by Section 13 or 15(d) of the Securities Exchange Act of 1934 during the preceding 12 months (or\nfor such shorter peri"
+   }
+  ],
+  "calculation": "",
+  "trace": [
+   {
+    "tool": "list_documents",
+    "input": {
+     "company": "American Express"
+    },
+    "seconds": 0.02,
+    "is_error": false
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "registered debt securities national securities exchange",
+     "company": "American Express",
+     "fiscal_year": 2022,
+     "doc_type": "10k"
+    },
+    "seconds": 1.68,
+    "is_error": false,
+    "returned": [
+     "AMERICANEXPRESS_2022_10K:p0:c0",
+     "AMERICANEXPRESS_2022_10K:p117:c2",
+     "AMERICANEXPRESS_2022_10K:p117:c1",
+     "AMERICANEXPRESS_2022_10K:p118:c1",
+     "AMERICANEXPRESS_2022_10K:p118:c0",
+     "AMERICANEXPRESS_2022_10K:p171:c0",
+     "AMERICANEXPRESS_2022_10K:p136:c1",
+     "AMERICANEXPRESS_2022_10K:p117:c0"
+    ]
+   },
+   {
+    "tool": "read_page",
+    "input": {
+     "doc_name": "AMERICANEXPRESS_2022_10K",
+     "page": 1
+    },
+    "seconds": 0.02,
+    "is_error": false,
+    "returned": [
+     "AMERICANEXPRESS_2022_10K:p0:page"
+    ]
+   }
+  ],
+  "tool_calls": 3,
+  "seconds": 52.43,
+  "usage": {
+   "input_tokens": 24129,
+   "output_tokens": 1388,
+   "cache_read": 0,
+   "cache_write": 0,
+   "cost_usd": 0.0,
+   "fallbacks": 0
+  },
+  "gold_answer": "There are none",
+  "grade": "correct",
+  "id": "financebench_id_00476"
+ },
+ {
+  "question": "Is 3M a capital-intensive business based on FY2022 data?",
+  "answer": "No, 3M is not a capital-intensive business based on FY2022 data.",
+  "status": "answered",
+  "citations": [
+   {
+    "evidence_id": "3M_2022_10K:p122:c1",
+    "doc_name": "3M_2022_10K",
+    "page": 123,
+    "text": "[columns: Operating Performance | 2022 | 2021 | 2020]\nTotal corporate special items | 1,637 | (214) | 186\nOther corporate expense - net | (118) | 38 | (95)\nTotal Corporate and Unallocated | 1,519 | (176) | 91\nTotal Company operating income | 6,539 | 7,369 | 7,161\nOther expense/(income), net | 147 | 165 | 366\nIncome before income taxes | $6,392 $7,204 $6,795\nAssets | Depreciation & Amortization | Capital Expenditures\n(Millions) | 2022 | 2021 | 2022 | 2021 | 2020 | 2022 | 2021 | 2020\nSafety and Industrial | $11,730 $11,744 $566 $593 $562 $512 $339 $451\nTransportation and Electronics | 6,453 | 6,999 | 410 | 419 | 429 | 562 | 453 | 454\nHealth Care | 13,343 | 14,055 | 623 | 636 | 626 | 272 | 249 | 251\nConsumer | 2,753 | 2,783 | 148 | 147 | 140 | 146 | 109 | 120\nCorporate and Unallocated | 12,176 | 11,491 | 84 | 120 | 154 | 257 | 453 | 225\nTotal Company | $46,455 $47,072 $1,831 $1,915 $1,911 $1,749 $1,603 $1,501\nAssets subject to attribution to business segments largely include accounts receivable; inventories; property, plant and equipment; goodwill; intangible assets; and certain\nlimited other assets. All other items are reflected in Corporate"
+   },
+   {
+    "evidence_id": "3M_2022_10K:p38:c2",
+    "doc_name": "3M_2022_10K",
+    "page": 39,
+    "text": "Year ended December 31, (Millions) | 2022 | 2021\nPurchases of property, plant and equipment (PP&E) | $(1,749) $(1,603)\nProceeds from sale of PP&E and other assets | 200 | 51\nPurchases and proceeds from maturities and sale of marketable securities and investments, net | 11 | 204\nProceeds from sale of businesses, net of cash sold | 13 | -\nCash payment from Food Safety business split-off, net of divested cash | 478 | -\nOther - net | 1 | 31\nNet cash provided by (used in) investing activities | $(1,046) $(1,317)\nInvestments in property, plant and equipment enable growth across many diverse markets, helping to meet product demand and increasing manufacturing efficiency. The\nCompany expects 2023 capital spending to be approximately $1.5 billion to $1.8 billion as 3M continues to invest in growth, productivity and sustainability.\n3M records capital-related government grants earned as reductions to the cost of property, plant and equipment; and associated unpaid liabilities and grant proceeds receivable\nare considered non-cash changes in such balances for purposes of preparation of statement of cash flows.\n39"
+   },
+   {
+    "evidence_id": "3M_2022_10K:p47:c0",
+    "doc_name": "3M_2022_10K",
+    "page": 48,
+    "text": "Table of Contents\n3M Company and Subsidiaries\nConsolidated Statement of Income\nYears ended December 31\n(Millions, except per share amounts) | 2022 | 2021 | 2020\nNet sales | $34,229 $35,355 $32,184\nOperating expenses\nCost of sales | 19,232 | 18,795 | 16,605\nSelling, general and administrative expenses | 9,049 | 7,197 | 6,929\nResearch, development and related expenses | 1,862 | 1,994 | 1,878\nGain on business divestitures | (2,724) | - | (389)\nGoodwill impairment expense | 271 | - | -\nTotal operating expenses | 27,690 | 27,986 | 25,023\nOperating income | 6,539 | 7,369 | 7,161\nOther expense (income), net | 147 | 165 | 366\nIncome before income taxes | 6,392 | 7,204 | 6,795\nProvision for income taxes | 612 | 1,285 | 1,337\nIncome of consolidated group | 5,780 | 5,919 | 5,458\nIncome (loss) from unconsolidated subsidiaries, net of taxes | 11 | 10 | (5)\nNet income including noncontrolling interest | 5,791 | 5,929 | 5,453\nLess: Net income (loss) attributable to noncontrolling interest | 14 | 8 | 4\nNet income attributable to 3M | $5,777 $5,921 $5,449\nWeighted average 3M common shares outstanding - basic | 566.0 | 579.0 | 577.6"
+   }
+  ],
+  "calculation": "(1749 / 34229) * 100 = 5.11%",
+  "trace": [
+   {
+    "tool": "list_documents",
+    "input": {
+     "company": "3M"
+    },
+    "seconds": 0.0,
+    "is_error": false
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "capital expenditures",
+     "company": "3M",
+     "fiscal_year": 2022,
+     "doc_type": "10K"
+    },
+    "seconds": 0.01,
+    "is_error": true,
+    "error": "Error executing tool search_documents: 1 validation error for search_documentsArguments\ndoc_type\n  Input should be '10k', '10q', '8k' or 'earnings' [type=literal_error, input_value='10K', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/literal_error"
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "capital expenditures",
+     "company": "3M",
+     "fiscal_year": 2022,
+     "doc_type": "10k"
+    },
+    "seconds": 0.99,
+    "is_error": false,
+    "returned": [
+     "3M_2022_10K:p6:c2",
+     "3M_2022_10K:p6:c1",
+     "3M_2022_10K:p122:c1",
+     "3M_2022_10K:p33:c0",
+     "3M_2022_10K:p55:c3",
+     "3M_2022_10K:p38:c2",
+     "3M_2022_10K:p55:c2",
+     "3M_2022_10K:p115:c1"
+    ]
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "revenue",
+     "company": "3M",
+     "fiscal_year": 2022,
+     "doc_type": "10k"
+    },
+    "seconds": 1.26,
+    "is_error": false,
+    "returned": [
+     "3M_2022_10K:p58:c0",
+     "3M_2022_10K:p54:c3",
+     "3M_2022_10K:p28:c1",
+     "3M_2022_10K:p123:c1",
+     "3M_2022_10K:p58:c1",
+     "3M_2022_10K:p47:c0",
+     "3M_2022_10K:p26:c0",
+     "3M_2022_10K:p54:c1"
+    ]
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "capital intensity OR analyst OR benchmark",
+     "company": "3M",
+     "fiscal_year": 2022,
+     "doc_type": "10k"
+    },
+    "seconds": 1.35,
+    "is_error": false,
+    "returned": [
+     "3M_2022_10K:p0:c2",
+     "3M_2022_10K:p83:c1",
+     "3M_2022_10K:p82:c1",
+     "3M_2022_10K:p46:c1",
+     "3M_2022_10K:p80:c2",
+     "3M_2022_10K:p80:c3",
+     "3M_2022_10K:p85:c1",
+     "3M_2022_10K:p92:c1"
+    ]
+   },
+   {
+    "tool": "calculate",
+    "input": {
+     "expression": "1749 / 34229 * 100"
+    },
+    "seconds": 0.0,
+    "is_error": false,
+    "value": 5.10970229921996
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "capital intensive OR capital structure",
+     "company": "3M",
+     "fiscal_year": 2022,
+     "doc_type": "10k"
+    },
+    "seconds": 1.46,
+    "is_error": false,
+    "returned": [
+     "3M_2022_10K:p14:c1",
+     "3M_2022_10K:p0:c2",
+     "3M_2022_10K:p36:c0",
+     "3M_2022_10K:p46:c1",
+     "3M_2022_10K:p83:c2",
+     "3M_2022_10K:p222:c0",
+     "3M_2022_10K:p82:c1",
+     "3M_2022_10K:p85:c1"
+    ]
+   }
+  ],
+  "tool_calls": 7,
+  "seconds": 93.32,
+  "usage": {
+   "input_tokens": 92975,
+   "output_tokens": 2796,
+   "cache_read": 0,
+   "cache_write": 0,
+   "cost_usd": 0.0,
+   "fallbacks": 0
+  },
+  "gold_answer": "No, the company is managing its CAPEX and Fixed Assets pretty efficiently, which is evident from below key metrics:\nCAPEX/Revenue Ratio: 5.1%\nFixed assets/Total Assets: 20%\nReturn on Assets= 12.4%",
+  "grade": "correct",
+  "id": "financebench_id_00499"
+ },
+ {
+  "question": "Was there any drop in Cash & Cash equivalents between FY 2023 and Q2 of FY2024?",
+  "answer": "Yes, there was a drop in Cash & Cash equivalents between FY 2023 and Q2 FY2024.",
+  "status": "answered",
+  "citations": [
+   {
+    "evidence_id": "BESTBUY_2023_10K:p43:page",
+    "doc_name": "BESTBUY_2023_10K",
+    "page": 44,
+    "text": "Notes to Consolidated Financial Statements\n1. Summary of Significant Accounting Policies\nUnless the context otherwise requires, the use of the terms “Best Buy,” “we,” “us” and “our” in these Notes to Consolidated Financial Statements refers to\nBest Buy Co., Inc. and, as applicable, its consolidated subsidiaries.\nDescription of Business\nWe are driven by our purpose to enrich lives through technology and our vision to personalize and humanize technology solutions for every stage of life. We\naccomplish this by leveraging our combination of technology and a human touch to meet our customers’ everyday needs, whether they come to us online, visit\nour stores or invite us into their homes. We have operations in the U.S. and Canada.\nWe have two reportable segments: Domestic and International. The Domestic segment is comprised of our operations in all states, districts and territories of the\nU.S. and our Best Buy Health business, and includes the brand names Best Buy, Best Buy Ads, Best Buy Business, Best Buy Health, CST, Current Health, Geek\nSquad, Lively, Magnolia, Pacific Kitchen and Home, TechLiquidators and Yardbird and the domain names bestbuy.com, currenthealth.com, lively.com,\ntechliquidators.com and yardbird.com. All of our former stores in Mexico were closed as of the end of the first quarter of fiscal 2022, and our International\nsegment is comprised of all operations in Canada under the brand names Best Buy, Best Buy Mobile and Geek Squad and the domain name bestbuy.ca.\nIn f"
+   },
+   {
+    "evidence_id": "BESTBUY_2024Q2_10Q:p7:page",
+    "doc_name": "BESTBUY_2024Q2_10Q",
+    "page": 8,
+    "text": "Table of Contents\nNotes to Condensed Consolidated Financial Statements\n(unaudited)\n1. Basis of Presentation\nUnless the context otherwise requires, the use of the terms “Best Buy,” “we,” “us” and “our” in these Notes to Condensed Consolidated Financial Statements\nrefers to Best Buy Co., Inc. and, as applicable, its consolidated subsidiaries.\nIn the opinion of management, the accompanying condensed consolidated financial statements contain all adjustments necessary for a fair presentation as\nprescribed by accounting principles generally accepted in the U.S. (“GAAP”). All adjustments were comprised of normal recurring adjustments, except as noted in\nthese Notes to Condensed Consolidated Financial Statements.\nA large proportion of our revenue and earnings is generated in the fiscal fourth quarter, which includes the majority of the holiday shopping season. Due to the\nseasonal nature of our business, interim results are not necessarily indicative of results for the entire fiscal year. The interim financial statements and the related\nnotes included in this Quarterly Report on Form 10-Q should be read in conjunction with the consolidated financial statements and related notes included in our\nAnnual Report on Form 10-K for the fiscal year ended January 28, 2023. The first six months of fiscal 2024 and fiscal 2023 included 26 weeks.\nIn preparing the accompanying condensed consolidated financial statements, we evaluated the period from July 29, 2023, through the date the financial\nstat"
+   }
+  ],
+  "calculation": "(1874 - 1093) = 781 million",
+  "trace": [
+   {
+    "tool": "list_documents",
+    "input": {},
+    "seconds": 0.29,
+    "is_error": false
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "Cash and cash equivalents",
+     "company": "Best Buy",
+     "doc_type": "10k",
+     "top_k": 5
+    },
+    "seconds": 1.52,
+    "is_error": false,
+    "returned": [
+     "BESTBUY_2019_10K:p59:c0",
+     "BESTBUY_2017_10K:p57:c2",
+     "BESTBUY_2023_10K:p43:c2",
+     "BESTBUY_2019_10K:p39:c2",
+     "BESTBUY_2017_10K:p41:c2"
+    ]
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "Cash and cash equivalents",
+     "company": "Best Buy",
+     "doc_type": "10q",
+     "top_k": 5
+    },
+    "seconds": 2.9,
+    "is_error": false,
+    "returned": [
+     "BESTBUY_2024Q2_10Q:p19:c3",
+     "BESTBUY_2024Q2_10Q:p7:c2",
+     "BESTBUY_2024Q2_10Q:p5:c1",
+     "BESTBUY_2024Q2_10Q:p20:c0",
+     "BESTBUY_2024Q2_10Q:p23:c0"
+    ]
+   },
+   {
+    "tool": "read_page",
+    "input": {
+     "doc_name": "BESTBUY_2023_10K",
+     "page": 44
+    },
+    "seconds": 0.01,
+    "is_error": false,
+    "returned": [
+     "BESTBUY_2023_10K:p43:page"
+    ]
+   },
+   {
+    "tool": "read_page",
+    "input": {
+     "doc_name": "BESTBUY_2024Q2_10Q",
+     "page": 8
+    },
+    "seconds": 0.01,
+    "is_error": false,
+    "returned": [
+     "BESTBUY_2024Q2_10Q:p7:page"
+    ]
+   },
+   {
+    "tool": "calculate",
+    "input": {
+     "expression": "1874 - 1093"
+    },
+    "seconds": 0.0,
+    "is_error": false,
+    "value": 781.0
+   }
+  ],
+  "tool_calls": 6,
+  "seconds": 121.7,
+  "usage": {
+   "input_tokens": 69994,
+   "output_tokens": 4026,
+   "cache_read": 0,
+   "cache_write": 0,
+   "cost_usd": 0.0,
+   "fallbacks": 0
+  },
+  "gold_answer": "Yes, there was a decline of ~42% between FY2023 and Q2 of FY 2024.",
+  "grade": "correct",
+  "id": "financebench_id_00288"
+ },
+ {
+  "question": "Which region had the Highest EBITDAR Contribution for MGM during FY2022?",
+  "answer": "Las Vegas Strip Resorts had the highest EBITDAR contribution for MGM during FY2022, with Adjusted Property EBITDAR of $3.1 billion (or $3,142,308 thousand).",
+  "status": "answered",
+  "citations": [
+   {
+    "evidence_id": "MGMRESORTS_2022_10K:p99:c0",
+    "doc_name": "MGMRESORTS_2022_10K",
+    "page": 100,
+    "text": "Year Ended December 31,\n2022 | 2021 | 2020\n(In thousands)\nAdjusted Property EBITDAR\nLas Vegas Strip Resorts | $3,142,308 $1,738,211 $232,188\nRegional Operations | 1,294,630 | 1,217,814 | 343,990\nMGM China | (203,136) | 25,367 | (193,832)\nReportable segment Adjusted Property EBITDAR | 4,233,802 | 2,981,392 | 382,346\nOther operating income (expense)\nCorporate and other, net | (736,548) | (560,309) | (530,843)\nPreopening and start-up expenses | (1,876) | (5,094) | (84)\nProperty transactions, net | 1,036,997 | 67,736 | (93,567)\nDepreciation and amortization | (3,482,050) | (1,150,610) | (1,210,556)\nGain on REIT transactions, net | 2,277,747 | - | 1,491,945\nGain on consolidation of CityCenter, net | - | 1,562,329 | -\nCEO transition expense | - | - | (44,401)\nOctober 1 litigation settlement | - | - | (49,000)\nRestructuring | - | - | (26,025)\nTriple-net operating lease and ground lease rent expense | (1,950,566) | (833,158) | (710,683)\nGain related to sale of Harmon land - unconsolidated"
+   }
+  ],
+  "calculation": "",
+  "trace": [
+   {
+    "tool": "list_documents",
+    "input": {
+     "company": "MGM Resorts International"
+    },
+    "seconds": 0.01,
+    "is_error": false
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "geographic segment EBITDAR breakdown",
+     "company": "MGM Resorts",
+     "fiscal_year": 2022,
+     "doc_type": "10k"
+    },
+    "seconds": 1.6,
+    "is_error": false,
+    "returned": [
+     "MGMRESORTS_2022_10K:p98:c1",
+     "MGMRESORTS_2022_10K:p98:c0",
+     "MGMRESORTS_2022_10K:p43:c0",
+     "MGMRESORTS_2022_10K:p40:c0",
+     "MGMRESORTS_2022_10K:p99:c0",
+     "MGMRESORTS_2022_10K:p42:c1",
+     "MGMRESORTS_2022_10K:p39:c2",
+     "MGMRESORTS_2022_10K:p43:c2"
+    ]
+   },
+   {
+    "tool": "read_page",
+    "input": {
+     "doc_name": "MGMRESORTS_2022_10K",
+     "page": 44
+    },
+    "seconds": 0.02,
+    "is_error": false,
+    "returned": [
+     "MGMRESORTS_2022_10K:p43:page"
+    ]
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "Regional Operations Adjusted Property EBITDAR",
+     "company": "MGM Resorts",
+     "fiscal_year": 2022,
+     "doc_type": "10k",
+     "top_k": 5
+    },
+    "seconds": 1.57,
+    "is_error": false,
+    "returned": [
+     "MGMRESORTS_2022_10K:p98:c0",
+     "MGMRESORTS_2022_10K:p40:c0",
+     "MGMRESORTS_2022_10K:p99:c0",
+     "MGMRESORTS_2022_10K:p43:c0",
+     "MGMRESORTS_2022_10K:p98:c1"
+    ]
+   }
+  ],
+  "tool_calls": 4,
+  "seconds": 58.09,
+  "usage": {
+   "input_tokens": 25122,
+   "output_tokens": 1458,
+   "cache_read": 0,
+   "cache_write": 0,
+   "cost_usd": 0.0,
+   "fallbacks": 0
+  },
+  "gold_answer": "Las Vegas resorts contributed ~90% of company level EBITDAR during FY2022.",
+  "grade": "correct",
+  "id": "financebench_id_00382"
+ },
+ {
+  "question": "In 2022 Q2, which of JPM's business segments had the highest net income?",
+  "answer": "Corporate & Investment Bank",
+  "status": "answered",
+  "citations": [
+   {
+    "evidence_id": "JPMORGAN_2022Q2_10Q:p176:page",
+    "doc_name": "JPMORGAN_2022Q2_10Q",
+    "page": 177,
+    "text": "Note 25 - Business segments\nThe Firm is managed on an LOB basis. There are four major | reportable business segments) on an FTE basis.\nreportable business segments - Consumer & Community | Accordingly, revenue from investments that receive tax\nBanking, Corporate & Investment Bank, Commercial | credits and tax-exempt securities is presented in the\nBanking and Asset & Wealth Management. In addition, there | managed results on a basis comparable to taxable\nis a Corporate segment. The business segments are | investments and securities. Refer to Note 32 of JPMorgan\ndetermined based on the products and services provided, or | Chase’s 2021 Form 10-K for additional information on the\nthe type of customer served, and they reflect the manner in | Firm’s managed basis.\nwhich financial information is currently evaluated by the | Capital allocation\nFirm’s Operating Committee. Segment results are presented | The amount of capital assigned to each business segment is\non a managed basis. Refer to Segment results below, and | referred to as equity. Periodically, the assumptions and\nNote 32 of JPMorgan Chase’s 2021 Form 10-K for a further | methodologies used to allocate capital are reassessed and\ndiscussion of JPMorgan Chase’s business segments. | as a result, the capital allocated to the LOBs may change.\nSegment results | Refer to Line of business equity on page 93 of JPMorgan\nThe following table provides a summary of the Firm’s | Chase’s 2021 Form 10-K for additional information on\nsegment "
+   }
+  ],
+  "calculation": "Max(3100, 5645, 994, 1004) = 5645",
+  "trace": [
+   {
+    "tool": "list_documents",
+    "input": {
+     "company": "JPMorgan Chase & Co."
+    },
+    "seconds": 0.01,
+    "is_error": false
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "company": "JPMorgan Chase & Co.",
+     "fiscal_year": 2022,
+     "doc_type": "10q",
+     "query": "business segments net income 2022"
+    },
+    "seconds": 1.52,
+    "is_error": false,
+    "returned": [
+     "JPMORGAN_2022Q2_10Q:p19:c0",
+     "JPMORGAN_2022Q2_10Q:p32:c2",
+     "JPMORGAN_2022Q2_10Q:p176:c0",
+     "JPMORGAN_2022Q2_10Q:p176:c4",
+     "JPMORGAN_2022Q2_10Q:p177:c3",
+     "JPMORGAN_2022Q2_10Q:p19:c1",
+     "JPMORGAN_2022Q2_10Q:p176:c1",
+     "JPMORGAN_2022Q2_10Q:p177:c0"
+    ]
+   },
+   {
+    "tool": "read_page",
+    "input": {
+     "doc_name": "JPMORGAN_2022Q2_10Q",
+     "page": 177
+    },
+    "seconds": 0.02,
+    "is_error": false,
+    "returned": [
+     "JPMORGAN_2022Q2_10Q:p176:page"
+    ]
+   }
+  ],
+  "tool_calls": 3,
+  "seconds": 57.83,
+  "usage": {
+   "input_tokens": 27766,
+   "output_tokens": 1458,
+   "cache_read": 0,
+   "cache_write": 0,
+   "cost_usd": 0.0,
+   "fallbacks": 0
+  },
+  "gold_answer": "Corporate & Investment Bank. Its net income was $3725 million.",
+  "grade": "correct",
+  "id": "financebench_id_00394"
+ },
+ {
+  "question": "Which debt securities are registered to trade on a national securities exchange under 3M's name as of Q2 of 2023?",
+  "answer": "The Q2 2023 10-Q filing does not contain specific information about registered debt securities with CUSIP or ISIN numbers ending in '3M', nor does it provide a complete list of all debt instruments trading on national exchanges (NYSE/NASDAQ).\n\nThe filing mentions:\n- Fixed-rate registered notes (aggregate amounts repaid in February and March 2023)\n- Medium-term notes (aggregate amounts repaid in March and May 2023)\n- $1.8 billion in commercial paper outstanding at June 30, 2023\n- A $4.25 billion five-year revolving credit facility (undrawn at Q2 2023)\n\nHowever, the specific CUSIP/ISIN identifiers and exchange listings for these securities are not provided in the Q2 2023 10-Q filing. The filing does contain a table of long-term debt maturities but does not include ticker symbols or confirmation of NYSE/NASDAQ listings.",
+  "status": "refused",
+  "citations": [
+   {
+    "evidence_id": "3M_2023Q2_10Q:p18:c0",
+    "doc_name": "3M_2023Q2_10Q",
+    "page": 19,
+    "text": "Table of Contents\nNOTE 10. Long-Term Debt and Short-Term Borrowings\nIn February 2023, 3M repaid $500 million aggregate principal amount of fixed-rate registered notes that matured. In March 2023, 3M repaid $650 million aggregate principal\namount of fixed-rate medium-term notes that matured. In May 2023, 3M repaid 600 million euros aggregate principal amount of fixed-rate medium-term notes that matured.\n2022 issuances, maturities, and extinguishments of short- and long-term debt are described in Note 12 to the Consolidated Financial Statements in 3M's 2022 Annual Report on\nForm 10-K.\nThe Company had $1.8 billion in commercial paper outstanding at June 30, 2023, compared to no commercial paper outstanding as of December 31, 2022.\nIn May 2023, 3M entered into a $4.25 billion five-year revolving credit facility expiring in 2028; the facility was amended in July 2023. The revolving credit agreement\nincludes a provision under which 3M may request an increase of up to $1.0 billion (at lender’s discretion), bringing the total facility up to $5.25 billion. The agreement replaced\nthe amended and restated $3.0 billion, five-year revolving credit agreement and the $1.25 billion 364-day credit facility that would have expired in November 2024 and\nNovember 2023, respectively. The credit facility was undrawn at June 30, 2023. Under the $4.25 billion credit facility, the Company is required to maintain its EBITDA to\nInterest Ratio as of the end of each fiscal quarter"
+   },
+   {
+    "evidence_id": "3M_2023Q2_10Q:p19:page",
+    "doc_name": "3M_2023Q2_10Q",
+    "page": 20,
+    "text": "Table of Contents\nNOTE 11. Pension and Postretirement Benefit Plans\nThe service cost component of defined benefit net periodic benefit cost is recorded in cost of sales; selling, general and administrative expenses; and research, development and\nrelated expenses. The other components of net periodic benefit cost are reflected in other expense (income), net. Components of net periodic benefit cost and other\nsupplemental information for the three and six months ended June 30, 2023 and 2022 follow:\nBenefit Plan Information\nThree months ended June 30,\nQualified and Non-qualified Pension Benefits\nPostretirement Benefits\nUnited States | International\n(Millions) | 2023 | 2022 | 2023 | 2022 | 2023 | 2022\nNet periodic benefit cost (benefit)\nOperating expense\nService cost | $43 $64 $20 $33 $6 $10\nNon-operating expense\nInterest cost | 165 | 104 | 54 | 32 | 23 | 13\nExpected return on plan assets | (244) | (241) | (75) | (70) | (19) | (17)\nAmortization of transition asset | - | - | 1 | 1 | - | -\nAmortization of prior service benefit | (6) | (6) | - | - | (8) | (9)\nAmortization of net actuarial loss | 74 | 106 | 2 | 9 | 2 | 10\nSettlements, curtailments, special termination benefits and other | - | - | - | - | - | 1\nTotal non-operating expense (benefit) | (11) | (37) | (18) | (28) | (2) | (2)\nTotal net periodic benefit cost (benefit) | $32 $27 $2 $5 $4 $8\nSix months ended June 30,\nQualified and Non-qualified Pension Benefits\nPostretirement Benefits\nUnited States | International\n(Millions) |"
+   }
+  ],
+  "calculation": "",
+  "trace": [
+   {
+    "tool": "list_documents",
+    "input": {
+     "company": "3M"
+    },
+    "seconds": 0.01,
+    "is_error": false
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "registered debt securities outstanding debt bonds notes CUSIP ISIN 3M Corporation",
+     "company": "3M",
+     "fiscal_year": 2023,
+     "doc_type": "10q"
+    },
+    "seconds": 1.23,
+    "is_error": false,
+    "returned": [
+     "3M_2023Q2_10Q:p70:c0",
+     "3M_2023Q2_10Q:p18:c0",
+     "3M_2023Q2_10Q:p69:c2",
+     "3M_2023Q2_10Q:p20:c2",
+     "3M_2023Q2_10Q:p69:c0",
+     "3M_2023Q2_10Q:p69:c1",
+     "3M_2023Q2_10Q:p23:c1",
+     "3M_2023Q2_10Q:p72:c1"
+    ]
+   },
+   {
+    "tool": "read_page",
+    "input": {
+     "doc_name": "3M_2023Q2_10Q",
+     "page": 18
+    },
+    "seconds": 0.02,
+    "is_error": false,
+    "returned": [
+     "3M_2023Q2_10Q:p17:page"
+    ]
+   },
+   {
+    "tool": "read_page",
+    "input": {
+     "doc_name": "3M_2023Q2_10Q",
+     "page": 19
+    },
+    "seconds": 0.02,
+    "is_error": false,
+    "returned": [
+     "3M_2023Q2_10Q:p18:page"
+    ]
+   },
+   {
+    "tool": "read_page",
+    "input": {
+     "doc_name": "3M_2023Q2_10Q",
+     "page": 20
+    },
+    "seconds": 0.02,
+    "is_error": false,
+    "returned": [
+     "3M_2023Q2_10Q:p19:page"
+    ]
+   },
+   {
+    "tool": "read_page",
+    "input": {
+     "doc_name": "3M_2023Q2_10Q",
+     "page": 21
+    },
+    "seconds": 0.03,
+    "is_error": false,
+    "returned": [
+     "3M_2023Q2_10Q:p20:page"
+    ]
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "CUSIP ISIN registered debt securities debt instruments bonds notes 3M Corporation Note 10 Note 12",
+     "company": "3M",
+     "fiscal_year": 2023,
+     "doc_type": "10q"
+    },
+    "seconds": 1.22,
+    "is_error": false,
+    "returned": [
+     "3M_2023Q2_10Q:p69:c3",
+     "3M_2023Q2_10Q:p18:c0",
+     "3M_2023Q2_10Q:p20:c0",
+     "3M_2023Q2_10Q:p69:c0",
+     "3M_2023Q2_10Q:p72:c1",
+     "3M_2023Q2_10Q:p23:c1",
+     "3M_2023Q2_10Q:p26:c1",
+     "3M_2023Q2_10Q:p1:c0"
+    ]
+   },
+   {
+    "tool": "search_documents",
+    "input": {
+     "query": "registered notes CUSIP ISIN Series notes commercial paper 3M",
+     "company": "3M",
+     "fiscal_year": 2023,
+     "doc_type": "10q"
+    },
+    "seconds": 1.56,
+    "is_error": false,
+    "returned": [
+     "3M_2023Q2_10Q:p69:c0",
+     "3M_2023Q2_10Q:p18:c0",
+     "3M_2023Q2_10Q:p69:c1",
+     "3M_2023Q2_10Q:p17:c1",
+     "3M_2023Q2_10Q:p72:c1",
+     "3M_2023Q2_10Q:p70:c0",
+     "3M_2023Q2_10Q:p69:c2",
+     "3M_2023Q2_10Q:p72:c0"
+    ]
+   },
+   {
+    "tool": "read_page",
+    "input": {
+     "doc_name": "3M_2023Q2_10Q",
+     "page": 19
+    },
+    "seconds": 0.01,
+    "is_error": false,
+    "returned": [
+     "3M_2023Q2_10Q:p18:page"
+    ]
+   }
+  ],
+  "tool_calls": 9,
+  "seconds": 74.54,
+  "usage": {
+   "input_tokens": 61786,
+   "output_tokens": 2368,
+   "cache_read": 0,
+   "cache_write": 0,
+   "cost_usd": 0.0,
+   "fallbacks": 0
+  },
+  "gold_answer": "Following debt securities registered under 3M's name are listed to trade on the New York Stock Exchange:\n-1.500% Notes due 2026 (Trading Symbol: MMM26)\n-1.750% Notes due 2030 (Trading Symbol: MMM30)\n-1.500% Notes due 2031 (Trading Symbol: MMM31)",
+  "grade": "refusal",
+  "id": "financebench_id_00941"
+ }
+]

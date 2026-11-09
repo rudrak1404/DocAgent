@@ -53,7 +53,50 @@ fixed in advance: best mean recall@5) and is reported on the **held-out test hal
 
 All 11 configurations x 3 filter settings, dev/test/all: [`results/retrieval_selection.md`](results/retrieval_selection.md).
 
-<!--E2E-->
+### End to end: answers
+
+All 150 questions, one shared store over all 84 filings, graded with FinanceBench's labels. **Both systems use the same free local LLM (Bonsai-2 9B), the same chunks and the same embeddings**, so the difference is the pipeline: planning, MCP tools, re-ranked retrieval and guardrails versus top-5 dense retrieval and one call.
+
+| | DocAgent | plain-RAG baseline |
+|---|---|---|
+| **accuracy, all questions** | **52.7% (79/150)** | **34.0% (51/150)** |
+| accuracy, held-out test half | 53.3% (40/75) | 32.0% (24/75) |
+| accuracy, excluding the 10 pilot questions | 52.9% (74/140) | 34.3% (48/140) |
+| incorrect (answered, but wrong) | 40 (26.7%) | 44 (29.3%) |
+| refusals | 31 | 55 |
+| accuracy when it answers | 66.4% | 53.7% |
+| faithfulness (claims supported by the evidence it used) | 92.3% | 96.2% |
+| evidence includes a gold page (DocAgent: cited; baseline: retrieved) | 63.4% | 41.3% |
+| time per question (laptop GPU; DocAgent 2, baseline 3 questions in parallel) | 88 s | 110 s |
+| tool calls per question | 5.7 | 0.0 |
+
+| question type (50 each) | DocAgent | baseline |
+|---|---|---|
+| metrics-generated | 68.0% | 32.0% |
+| domain-relevant | 44.0% | 34.0% |
+| novel-generated | 46.0% | 36.0% |
+
+* **Paired test (same questions):** DocAgent is right where the baseline is wrong on 40 questions, the reverse on 12; exact McNemar p = 0.00013; accuracy difference +18.7 points (95% bootstrap CI +9.3 to +28.0).
+* **Guardrails trade recall for precision:** 16 answers were withheld because a citation or figure could not be verified. Graded anyway, 11 would have been correct and 5 incorrect (15 more the agent itself flagged as insufficient evidence). Returning every withheld draft instead would give 62.0% accuracy with 50 incorrect answers, versus 52.7% with 40 as deployed.
+* **Judge check:** blind manual grading of 40 judged answers (stratified by system and question type) agrees with the LLM judge on 82.5% of labels (Cohen's kappa 0.72) and on 90.0% of correct-vs-not decisions (kappa 0.80); every disagreement on correctness had the judge stricter (4 cases; sample accuracy 57% by hand vs 48% by the judge), so the accuracies above are, if anything, conservative.
+* **Generation health:** DocAgent made 1218 LLM calls (0 stopped at the token limit, 0 re-sampled, 35 old tool results shortened); the baseline made 150 (11 at the limit, 16 re-sampled).
+* Per-question answers, verdicts, citations and tool traces: [`results/runs/`](results/runs/) and the [demo page](https://rudrak1404.github.io/DocAgent/); summary: [`results/eval_summary.md`](results/eval_summary.md).
+
+**Reading the results**
+* The gain is largest where retrieval and arithmetic matter: on computed metrics DocAgent is right
+  68% of the time vs 32%. Top-5 dense retrieval over one store of 84 filings often misses the right
+  filing altogether, so the baseline often has nothing to go on and declines (55 refusals).
+* DocAgent answers more often (119 vs 95 committed answers) *and* is more accurate when it answers
+  (66% vs 54%). Its faithfulness is slightly lower (92% vs 96%), and the gap is mostly in the
+  qualitative questions (98% on computed metrics, 88-91% on the others), where it adds interpretive
+  claims ("indicating healthy liquidity") that its cited passages do not state; the baseline's
+  fewer answers mostly restate a passage.
+* The guardrails are a deliberate precision setting: they turn 16 unverifiable drafts into
+  refusals, losing 11 correct answers to avoid 5 wrong ones. For a filing analyst a wrong figure
+  is worse than "not verified", but the trade-off is shown rather than hidden.
+* For context only, not like-for-like (different retrieval, chunking and prompts, 2023 model): the
+  FinanceBench paper reports that GPT-4-Turbo with a retrieval system answered incorrectly or
+  refused on 81% of its questions.
 
 ## How it works
 
@@ -134,6 +177,11 @@ rather than return an unverified figure. Retrieved text is treated as data, neve
     (the latest result is never touched). Ollama otherwise silently drops the start of an
     over-long prompt, i.e. the question. The evidence registry keeps every full text, so shortened
     ids stay citable and the guardrails still check against the full text.
+  * **Serving:** Ollama with flash attention and an 8-bit KV cache, and one cache slot per
+    concurrently running question. With a single shared slot, interleaved conversations evicted
+    each other's cached prompt, so every agent turn re-read its whole history (7.5 s for 13k
+    tokens); with a slot each, a turn only processes its new tokens (0.7 s). Both systems use the
+    same engine settings.
 * **Claude (optional):** the official Anthropic SDK with adaptive thinking, prompt caching of the
   growing conversation, and server-side refusal fallback (`DOCAGENT_LLM_PROVIDER=anthropic`).
 
@@ -189,6 +237,7 @@ python -m pytest -q                                    # offline tests (no LLM n
 python -m docagent.evaluation run --system agent       # resumable
 python -m docagent.evaluation run --system baseline
 python -m docagent.evaluation judge --system agent && python -m docagent.evaluation judge --system baseline
+python -m docagent.evaluation audit-sample             # blind sample -> grade into results/judge_audit_manual.json
 python -m docagent.evaluation report
 python deploy/build_pages.py                           # static results site (docs/)
 

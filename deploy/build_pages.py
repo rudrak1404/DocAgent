@@ -38,6 +38,17 @@ def _cites(row: dict, n: int = 6) -> list:
     return [{"doc": c["doc_name"], "page": c["page"], "text": c["text"][:900]} for c in (row.get("citations") or [])[:n]]
 
 
+def _retrieval() -> list[dict]:
+    """Retrieval ablation on the held-out test half, no metadata filter."""
+    p = RES / "retrieval_selection.json"
+    if not p.exists():
+        return []
+    d = json.loads(p.read_text(encoding="utf-8"))
+    return [{"config": " / ".join(n.split("|")), "chosen": n == d["chosen"], "r1": t["none"]["recall@1"],
+             "r5": t["none"]["recall@5"], "r10": t["none"]["recall@10"], "mrr": t["none"]["mrr@10"]}
+            for n, t in d["test"].items()]
+
+
 def main():
     qs = load_questions()
     agent, base = _rows("agent"), _rows("baseline")
@@ -59,9 +70,8 @@ def main():
                          "seconds": b.get("seconds")} if b else None,
         })
     summary = json.loads((RES / "eval_summary.json").read_text(encoding="utf-8")) if (RES / "eval_summary.json").exists() else {}
-    retrieval = (RES / "retrieval_selection.md").read_text(encoding="utf-8") if (RES / "retrieval_selection.md").exists() else ""
     OUT.mkdir(exist_ok=True)
-    (OUT / "data.json").write_text(json.dumps({"items": items, "summary": summary, "retrieval_md": retrieval},
+    (OUT / "data.json").write_text(json.dumps({"items": items, "summary": summary, "retrieval": _retrieval()},
                                               ensure_ascii=False), encoding="utf-8")
     (OUT / "index.html").write_text(PAGE, encoding="utf-8")
     (OUT / ".nojekyll").write_text("", encoding="utf-8")
@@ -99,11 +109,12 @@ PAGE = r"""<!DOCTYPE html>
 <body>
 <header>
   <h1>DocAgent: an agentic RAG analyst for SEC filings</h1>
-  <p>A LangGraph agent that plans, retrieves through its own MCP server (hybrid search, page reader,
-  calculator, ratio library) and must pass citation and number guardrails, evaluated on all 150
-  open-source <a href="https://github.com/patronus-ai/financebench">FinanceBench</a> questions against a
-  plain-RAG LangChain baseline. Code, tests and method:
-  <a href="https://github.com/rudrak1404/DocAgent">github.com/rudrak1404/DocAgent</a>.</p>
+  <p>A LangGraph agent that plans, retrieves through its own MCP server (dense search with a
+  cross-encoder re-ranker, page reader, calculator, ratio library) and must pass citation and number
+  guardrails, evaluated on all 150 open-source
+  <a href="https://github.com/patronus-ai/financebench">FinanceBench</a> questions against a plain-RAG
+  LangChain baseline. Both systems use the same free local model (Bonsai-2 9B via Ollama) on a laptop GPU.
+  Code, tests and method: <a href="https://github.com/rudrak1404/DocAgent">github.com/rudrak1404/DocAgent</a>.</p>
 </header>
 <main>
   <div class="card"><div class="kpis" id="kpis"></div><p class="muted" id="kpinote"></p></div>
@@ -118,7 +129,7 @@ PAGE = r"""<!DOCTYPE html>
       <input id="ftext" placeholder="filter by company or text">
     </div>
     <div id="list" class="muted">Loading...</div></div>
-  <p class="muted">Filings and questions: FinanceBench (Patronus AI). Grades are from an LLM judge with explicit rules for units and rounding.</p>
+  <p class="muted" id="judgenote">Filings and questions: FinanceBench (Patronus AI). Grades are from an LLM judge (Qwen3-8B) with explicit rules for units and rounding.</p>
 </main>
 <script>
 const $ = id => document.getElementById(id);
@@ -126,13 +137,6 @@ const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;
 const pct = x => x == null ? "-" : (100 * x).toFixed(1) + "%";
 const badge = g => `<span class="badge ${esc(g || "none")}">${esc(g || "not graded")}</span>`;
 let D;
-function mdTable(md) {
-  const rows = md.split("\n").filter(l => l.startsWith("|") && !l.startsWith("|---"));
-  if (!rows.length) return "";
-  const cells = r => r.split("|").slice(1, -1).map(c => c.trim());
-  const [h, ...b] = rows;
-  return `<table><tr>${cells(h).map(c => `<th>${esc(c)}</th>`).join("")}</tr>${b.map(r => `<tr>${cells(r).map(c => `<td>${esc(c.replace(/\*\*/g, ""))}</td>`).join("")}</tr>`).join("")}</table>`;
-}
 function render() {
   const t = $("ftype").value, g = $("fgrade").value, s = $("ftext").value.toLowerCase();
   const items = D.items.filter(i => (!t || i.type === t) && (!g || (i.agent && i.agent.grade === g)) &&
@@ -155,15 +159,19 @@ fetch("data.json").then(r => r.json()).then(d => {
   D = d; const S = d.summary || {};
   const A = S["agent|all"], B = S["baseline|all"];
   const k = [["DocAgent accuracy", A && pct(A.accuracy)], ["Baseline accuracy", B && pct(B.accuracy)],
-             ["DocAgent faithfulness", A && pct(A.faithfulness)], ["Evidence on gold page", A && pct(A.citation_hits_gold_page)],
+             ["DocAgent accuracy when it answers", A && pct(A.accuracy_when_answered)],
+             ["DocAgent faithfulness", A && pct(A.faithfulness)], ["DocAgent evidence on gold page", A && pct(A.citation_hits_gold_page)],
              ["Questions", S.questions]];
   $("kpis").innerHTML = k.map(([l, v]) => `<div class="kpi"><div class="v">${esc(v ?? "-")}</div><div class="l">${esc(l)}</div></div>`).join("");
-  if (S.paired) $("kpinote").textContent = `Paired comparison: DocAgent right and baseline wrong on ${S.paired.agent_only_correct} questions, the reverse on ${S.paired.baseline_only_correct}; exact McNemar p = ${Number(S.paired.mcnemar_p).toPrecision(2)}.`;
-  const types = ["all", "test split", "metrics-generated", "domain-relevant", "novel-generated"];
-  $("bytype").innerHTML = `<table><tr><th>subset</th><th>n</th><th>DocAgent</th><th>baseline</th><th>DocAgent refusals</th></tr>${types.map(t => {
+  if (S.paired) $("kpinote").textContent = `Paired comparison: DocAgent right and baseline wrong on ${S.paired.agent_only_correct} questions, the reverse on ${S.paired.baseline_only_correct}; exact McNemar p = ${Number(S.paired.mcnemar_p).toPrecision(2)}; accuracy difference ${(100 * S.paired.accuracy_diff).toFixed(1)} points (95% bootstrap CI ${(100 * S.paired.ci95[0]).toFixed(1)} to ${(100 * S.paired.ci95[1]).toFixed(1)}).`;
+  const types = ["all", "test split", "excluding pilot", "metrics-generated", "domain-relevant", "novel-generated"];
+  $("bytype").innerHTML = `<table><tr><th>subset</th><th>n</th><th>DocAgent</th><th>baseline</th><th>DocAgent refusals</th><th>baseline refusals</th></tr>${types.map(t => {
     const a = S["agent|" + t], b = S["baseline|" + t]; if (!a) return "";
-    return `<tr><td>${esc(t)}</td><td>${a.n}</td><td>${pct(a.accuracy)}</td><td>${b ? pct(b.accuracy) : "-"}</td><td>${a.refusal}</td></tr>`; }).join("")}</table>`;
-  $("retrieval").innerHTML = mdTable(d.retrieval_md.split("\n").filter(l => !l.includes("| filing |") && !l.includes("| company |") ).join("\n"));
+    return `<tr><td>${esc(t)}</td><td>${a.n}</td><td>${pct(a.accuracy)}</td><td>${b ? pct(b.accuracy) : "-"}</td><td>${a.refusal}</td><td>${b ? b.refusal : "-"}</td></tr>`; }).join("")}</table>`;
+  $("retrieval").innerHTML = `<table><tr><th>configuration (test half, no filter)</th><th>recall@1</th><th>recall@5</th><th>recall@10</th><th>MRR@10</th></tr>${(d.retrieval || []).map(r =>
+    `<tr${r.chosen ? ' style="font-weight:700"' : ""}><td>${esc(r.config)}${r.chosen ? " (chosen)" : ""}</td><td>${pct(r.r1)}</td><td>${pct(r.r5)}</td><td>${pct(r.r10)}</td><td>${Number(r.mrr).toFixed(3)}</td></tr>`).join("")}</table>`;
+  const J = S.judge_agreement;
+  if (J) $("judgenote").textContent += ` Checked against blind manual grading of ${J.n} answers: ${pct(J.agreement)} label agreement (Cohen's kappa ${J.cohen_kappa.toFixed(2)}), ${pct(J.agreement_correct_vs_not)} on correct-vs-not.`;
   ["ftype", "fgrade"].forEach(id => $(id).onchange = render); $("ftext").oninput = render; render();
 });
 </script>

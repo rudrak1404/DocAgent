@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import json
 import random
+import sys
 from collections import defaultdict
 from pathlib import Path
 
@@ -126,19 +127,34 @@ def main():
            "chosen": chosen, "dev": dev, "test": test, "all": full, "per_question_ranks": per_q}
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     (RESULTS_DIR / "retrieval_selection.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
+    print(write_report(out))
 
-    lines = [f"Chosen on dev (rule: {out['selection_rule']}): **{chosen}**\n",
+
+def label(name: str) -> str:
+    """Readable configuration name (the internal key uses '|', which breaks markdown tables)."""
+    return " / ".join(name.split("|"))
+
+
+def write_report(out: dict) -> str:
+    """results/retrieval_selection.md from the saved selection results."""
+    dev, test, full, chosen = out["dev"], out["test"], out["all"], out["chosen"]
+    lines = [f"Chosen on dev (rule: {out['selection_rule']}): **{label(chosen)}**\n",
+             "Configuration = embedder / mode / re-ranker / BM25 weight in the fusion.\n",
              "| configuration | filter | dev R@5 | test R@1 | test R@5 | test R@10 | test MRR@10 | all R@5 | all R@10 |",
              "|---|---|---|---|---|---|---|---|---|"]
-    for n in names:
-        for f in FILTERS:
+    for n in dev:
+        for f in dev[n]:
             mark = " **(chosen)**" if n == chosen else ""
-            lines.append(f"| {n}{mark} | {f} | {dev[n][f]['recall@5']:.1%} | {test[n][f]['recall@1']:.1%} | "
+            lines.append(f"| {label(n)}{mark} | {f} | {dev[n][f]['recall@5']:.1%} | {test[n][f]['recall@1']:.1%} | "
                          f"{test[n][f]['recall@5']:.1%} | {test[n][f]['recall@10']:.1%} | {test[n][f]['mrr@10']:.3f} | "
                          f"{full[n][f]['recall@5']:.1%} | {full[n][f]['recall@10']:.1%} |")
-    (RESULTS_DIR / "retrieval_selection.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print("\n".join(lines))
+    text = "\n".join(lines) + "\n"
+    (RESULTS_DIR / "retrieval_selection.md").write_text(text, encoding="utf-8")
+    return text
 
 
 if __name__ == "__main__":
-    main()
+    if "--report-only" in sys.argv:          # re-render the markdown from the saved JSON
+        print(write_report(json.loads((RESULTS_DIR / "retrieval_selection.json").read_text(encoding="utf-8"))))
+    else:
+        main()

@@ -1,0 +1,322 @@
+[
+ {
+  "key": "baseline|financebench_id_03282",
+  "question_type": "metrics-generated",
+  "question": "What is Netflix's year end FY2017 total current liabilities (in USD millions)? Base your judgments on the information provided primarily in the balance sheet.",
+  "gold": "$5466.00",
+  "justification": "The metric total current liabilities was directly extracted from the company 10K. The line item name, as seen in the 10K, was: Total current liabilities.",
+  "answer": "$5,466.3 million\n\nAccording to the Consolidated Balance Sheets as of December 31, 2017, Netflix reported Total current liabilities of $5,466,312 in thousands [NETFLIX_2017_10K p.45]."
+ },
+ {
+  "key": "baseline|financebench_id_00601",
+  "question_type": "novel-generated",
+  "question": "What drove the reduction in SG&A expense as a percent of net sales in FY2023?",
+  "gold": "Lower marketing expenses and leverage of incentive compensation due to higher sales. The answer here assumes FY2023 refers to the 12 months ended on January 28, 2023 (although the company refers to this period as its fiscal 2022.",
+  "justification": "Fiscal 2022 = FY2023. Fiscal 2021 = FY2022.",
+  "answer": "Lower marketing expenses and leverage of incentive compensation due to higher sales drove the reduction in SG&A expense as a percentage of net sales. The earnings release states that SG&A expenses decreased to 23.5% compared to 23.9% primarily due to lower marketing expenses and leverage of incentive compensation, partially offset by deleverage in corporate overhead and store payroll. [ULTABEAUTY_2023Q4_EARNINGS p.2]"
+ },
+ {
+  "key": "agent|financebench_id_02419",
+  "question_type": "novel-generated",
+  "question": "As of Q2'2023, is Pfizer spinning off any large business segments?",
+  "gold": "Yes, it's spinning off Upjohn.",
+  "justification": "",
+  "answer": "No, Pfizer did not announce or execute any spin-off of a large business segment as of Q2 2023. The BioNTech partnership deal mentioned in the filings was established in November 2020 and involves a licensing agreement for Comirnaty vaccine development, not a spin-off transaction."
+ },
+ {
+  "key": "baseline|financebench_id_00711",
+  "question_type": "domain-relevant",
+  "question": "Roughly how many times has JnJ sold its inventory in FY2022? Calculate inventory turnover ratio for FY2022; if conventional inventory management is not meaningful for the company then state that and explain why.",
+  "gold": "JnJ sold its inventory 2.7 times in FY2022.",
+  "justification": "Inventory turnover ratio = Cost of products sold/average inventories = 31,089/((12,483+10,387)/2) = 2.7",
+  "answer": "The provided context does not contain sufficient information to calculate the inventory turnover ratio. While the 2022 annual report lists ending inventory balances totaling $12,483 million [JOHNSON_JOHNSON_2022_10K p.58], neither the earnings release nor the 10-K provides the Cost of Goods Sold or gross profit figures required to compute the ratio."
+ },
+ {
+  "key": "agent|financebench_id_05718",
+  "question_type": "metrics-generated",
+  "question": "How much (in USD billions) did American Water Works pay out in cash dividends for FY2020? Compute or extract the answer by primarily using the details outlined in the statement of cash flows.",
+  "gold": "$0.40",
+  "justification": "The metric total cash dividends paid out was directly extracted from the company 10K. The line item name, as seen in the 10K, was: Dividends paid.",
+  "answer": "0.389 billion"
+ },
+ {
+  "key": "agent|financebench_id_07661",
+  "question_type": "metrics-generated",
+  "question": "Using the cash flow statement, answer the following question to the best of your abilities: how much did Block (formerly known as Square) generate in cash flow from operating activities in FY2020? Answer in USD millions.",
+  "gold": "$382.00",
+  "justification": "The metric cash from operations was directly extracted from the company 10K. The line item name, as seen in the 10K, was: Net cash provided by operating activities.",
+  "answer": "$381.6 million"
+ },
+ {
+  "key": "baseline|financebench_id_01491",
+  "question_type": "novel-generated",
+  "question": "What is the amount of the cash proceeds that JnJ realised from the separation of Kenvue (formerly Consumer Health business segment), as of August 30, 2023?",
+  "gold": "JnJ realised $13.2 billion in cash proceeds from the separation of Kenvue.",
+  "justification": "",
+  "answer": "$13.2 billion. Johnson & Johnson secured this amount in cash proceeds from the Kenvue debt offering and initial public offering following the completion of the exchange offer. [JOHNSON_JOHNSON_2023_8K_dated-2023-08-30 p.4]"
+ },
+ {
+  "key": "baseline|financebench_id_00606",
+  "question_type": "novel-generated",
+  "question": "Did Ulta Beauty's wages expense as a percent of net sales increase or decrease in FY2023?",
+  "gold": "Wages expense as a percent of net sales increased in FY2023. The answer here assumes FY2023 refers to the 12 months ended on January 28, 2023 (although the company refers to this period as its fiscal 2022.",
+  "justification": "Fiscal 2022 = FY2023. Fiscal 2021 = FY2022. Store payroll and benefits = wages. Store payroll and benefits offsets reduction in SG&A percent of net sales in FY2023.",
+  "answer": "The provided context does not contain the answer. The text includes data for Fiscal 2021 and Fiscal 2022, but it does not provide financial figures or wage expense percentages for Fiscal Year 2023."
+ },
+ {
+  "key": "baseline|financebench_id_01487",
+  "question_type": "novel-generated",
+  "question": "Did JnJ's net earnings as a percent of sales increase in Q2 of FY2023 compared to Q2 of FY2022?",
+  "gold": "Yes, net earnings as a percent of sales increased from 20% in Q2 of FY2022 to 20.1% in Q2 of FY2023.",
+  "justification": "",
+  "answer": "Yes\nAccording to the [JOHNSON_JOHNSON_2023Q2_EARNINGS p.1] earnings release, Johnson & Johnson's net earnings grew by 6.9% while reported sales grew by 6.3% in Q2 2023 compared to the prior period, indicating that net earnings as a percent of sales increased."
+ },
+ {
+  "key": "agent|financebench_id_03856",
+  "question_type": "metrics-generated",
+  "question": "What is the FY2017 operating cash flow ratio for Adobe? Operating cash flow ratio is defined as: cash from operations / total current liabilities. Round your answer to two decimal places. Please utilize information provided primarily within the balance sheet and the cash flow statement.",
+  "gold": "0.83",
+  "justification": "The metric in question was calculated using other simpler metrics. The various simpler metrics (from the current and, if relevant, previous fiscal year(s)) used were:\n\nMetric 1: Cash from operations. This metric was located in the 10K as a single line item named: Net cash provided by operating activities.\n\nMetric 2: Total current liabilities. This metric was located in the 10K as a single line item named: Total current liabilities.",
+  "answer": "0.83"
+ },
+ {
+  "key": "agent|financebench_id_00563",
+  "question_type": "novel-generated",
+  "question": "From FY21 to FY22, excluding Embedded, in which AMD reporting segment did sales proportionally increase the most?",
+  "gold": "Data Center",
+  "justification": "Data center: \nFY22: 6,043\nFY21: 3,694 \n6,043/3,694-1 = 63,59%\n\nClient: \nFY22: 6,201\nFY21: 6,887 \n6,201/6,887-1 = -9,96%\n\n\nGaming: \nFY22: 6,805\nFY21: 5,607 \n6,805/5,607-1 = 21,37%",
+  "answer": "Data Center"
+ },
+ {
+  "key": "agent|financebench_id_06247",
+  "question_type": "metrics-generated",
+  "question": "What is FY2018 days payable outstanding (DPO) for Walmart? DPO is defined as: 365 * (average accounts payable between FY2017 and FY2018) / (FY2018 COGS + change in inventory between FY2017 and FY2018). Round your answer to two decimal places. Please base your judgments on the information provided primarily in the statement of financial position and the P&L statement.",
+  "gold": "42.69",
+  "justification": "The metric in question was calculated using other simpler metrics. The various simpler metrics (from the current and, if relevant, previous fiscal year(s)) used were:\n\nMetric 1: Accounts payable. This metric was located in the 10K as a single line item named: Accounts payable.\n\nMetric 2: Inventories. This metric was located in the 10K as a single line item named: Inventories.\n\nMetric 3: Cost of goods sold. This metric was located in the 10K as a single line item named: Cost of sales.",
+  "answer": "42.69"
+ },
+ {
+  "key": "agent|financebench_id_04254",
+  "question_type": "metrics-generated",
+  "question": "Basing your judgments off of the cash flow statement and the income statement, what is American Water Works's FY2021 unadjusted operating income + depreciation and amortization from the cash flow statement (unadjusted EBITDA) in USD millions?",
+  "gold": "$1832.00",
+  "justification": "The metric in question was calculated using other simpler metrics. The various simpler metrics (from the current and, if relevant, previous fiscal year(s)) used were:\n\nMetric 1: Depreciation and amortization. This metric was located in the 10K as a single line item named: Depreciation and amortization.\n\nMetric 2: Unadjusted operating income. This metric was located in the 10K as a single line item named: Operating income.",
+  "answer": "1832"
+ },
+ {
+  "key": "baseline|financebench_id_07507",
+  "question_type": "metrics-generated",
+  "question": "What is Adobe's year-over-year change in unadjusted operating income from FY2015 to FY2016 (in units of percents and round to one decimal place)? Give a solution to the question by using the income statement.",
+  "gold": "65.4%",
+  "justification": "The metric unadjusted operating income was directly extracted from the company 10K. The line item name, as seen in the 10K, was: Operating income. The final step was to execute the desired percent change calculation on unadjusted operating income.",
+  "answer": "The provided context does not contain sufficient information to determine Adobe's year-over-year change in unadjusted operating income from FY2015 to FY2016. While the text lists Total Operating Expenses for both fiscal years, it does not include Total Revenue or a specific line item for Operating Income required to calculate the change using the provided income statement excerpts."
+ },
+ {
+  "key": "agent|financebench_id_01226",
+  "question_type": "domain-relevant",
+  "question": "What drove operating margin change as of FY2022 for 3M? If operating margin is not a useful metric for a company like this, then please state that and explain why.",
+  "gold": "Operating Margin for 3M in FY2022 has decreased by 1.7% primarily due to: \n-Decrease in gross Margin\n-mostly one-off charges including Combat Arms Earplugs litigation, impairment related to exiting PFAS manufacturing, costs related to exiting Russia and divestiture-related restructuring\ncharges",
+  "justification": "",
+  "answer": "Operating margin decreased from 20.8% in FY2021 to 19.1% in FY2022. The decline was driven by increased cost of sales (3.0% YoY increase due to PFAS litigation costs and raw material price hikes), higher SG&A expenses (6.1% YoY increase), and manufacturing headwinds from supply chain disruptions. A $2,724 million gain on business divestitures also reduced operating income in FY2022."
+ },
+ {
+  "key": "baseline|financebench_id_07661",
+  "question_type": "metrics-generated",
+  "question": "Using the cash flow statement, answer the following question to the best of your abilities: how much did Block (formerly known as Square) generate in cash flow from operating activities in FY2020? Answer in USD millions.",
+  "gold": "$382.00",
+  "justification": "The metric cash from operations was directly extracted from the company 10K. The line item name, as seen in the 10K, was: Net cash provided by operating activities.",
+  "answer": "Block generated $381.6 million in cash flow from operating activities in FY2020. According to the Management's Discussion and Analysis section of the 2020 10-K filing, cash provided by operating activities was $381.6 million for the year ended December 31, 2020. [BLOCK_2020_10K p.74]"
+ },
+ {
+  "key": "baseline|financebench_id_04412",
+  "question_type": "metrics-generated",
+  "question": "We need to calculate a reasonable approximation (or exact number if possible) of a financial metric. Basing your judgment by information plainly provided in the balance sheet and the P&L statement, what is Lockheed Martin's FY2020 asset turnover ratio? Asset turnover ratio is defined as: FY2020 revenue / (average total assets between FY2019 and FY2020). Round your answer to two decimal places.",
+  "gold": "1.33",
+  "justification": "The metric in question was calculated using other simpler metrics. The various simpler metrics (from the current and, if relevant, previous fiscal year(s)) used were:\n\nMetric 1: Total revenue. This metric was located in the 10K as a single line item named: Total net sales.\n\nMetric 2: Total assets. This metric was located in the 10K as a single line item named: Total assets.",
+  "answer": "It cannot be determined from the provided context. While Total Assets for FY2019 and FY2020 are available in the Selected Financial Data tables, the Net Sales or Revenue figure required to calculate the ratio is not included in any of the provided SEC filings."
+ },
+ {
+  "key": "baseline|financebench_id_01275",
+  "question_type": "domain-relevant",
+  "question": "Among operations, investing, and financing activities, which brought in the most (or lost the least) cash flow for Best Buy in FY2023?",
+  "gold": "Best Buy generated the most cash flow from operating activities in FY 2023 ($1.8 bn)",
+  "justification": "",
+  "answer": "Operating activities. According to the 2023 fiscal year report, cash provided by operating activities was $1,824 million, which was significantly higher than the net outflows from investing (-$962 million) and financing (-$1,806 million) activities [BESTBUY_2023_10K p.29]."
+ },
+ {
+  "key": "baseline|financebench_id_00995",
+  "question_type": "domain-relevant",
+  "question": "What are the major products and services that AMD sells as of FY22?",
+  "gold": "AMD sells server microprocessors (CPUs) and graphics processing units (GPUs), data processing units (DPUs), Field Programmable Gate Arrays (FPGAs), and Adaptive System-on-Chip (SoC) products for data centers; CPUs, accelerated processing units (APUs) that integrate CPUs and GPUs, and chipsets for desktop and notebook personal computers; discrete GPUs, and semi-custom SoC products and development services; and embedded CPUs, GPUs, APUs, FPGAs, and Adaptive SoC products.",
+  "justification": "",
+  "answer": "AMD sells server microprocessors (CPUs), graphics processing units (GPUs), data processing units (DPUs), Field Programmable Gate Arrays (FPGAs), Adaptive System-on-Chip (SoC) products, CPUs, accelerated processing units (APUs), chipsets, and development services [AMD_2022_10K p.4]. These offerings are provided to markets including data centers, desktops, notebooks, and embedded applications [AMD_2022_10K p.4]."
+ },
+ {
+  "key": "agent|financebench_id_00494",
+  "question_type": "novel-generated",
+  "question": "What production rate changes is Boeing forecasting for FY2023?",
+  "gold": "Boeing forecasts an increase in the production rates for the 737, 777X and 787 aircrafts in 2023.",
+  "justification": "Boeing plans to gradually increase production rates for the 737 and 787 and to resume production of 777X.",
+  "answer": "Boeing forecasts gradually returning to a production rate of 5 aircraft per month in FY2023 from current low production rates."
+ },
+ {
+  "key": "agent|financebench_id_00460",
+  "question_type": "novel-generated",
+  "question": "Was there any change in the number of Best Buy stores between Q2 of FY2024 and FY2023?",
+  "gold": "Yes, there is decline in number stores by 1.32% from 982 stores in Q2 FY 2023 to 969 by the end of Q2 FY2024.",
+  "justification": "969/982-1",
+  "answer": "Yes, there was a change. Best Buy had 982 stores at the end of Q2 FY2024 and 977 stores at the end of Q2 FY2023, representing a decrease of 5 stores."
+ },
+ {
+  "key": "agent|financebench_id_01279",
+  "question_type": "domain-relevant",
+  "question": "Among operations, investing, and financing activities, which brought in the most (or lost the least) cash flow for AMD in FY22?",
+  "gold": "In 2022, AMD brought in the most cashflow from Operations",
+  "justification": "",
+  "answer": "Investing activities"
+ },
+ {
+  "key": "baseline|financebench_id_04672",
+  "question_type": "metrics-generated",
+  "question": "Assume that you are a public equities analyst. Answer the following question by primarily using information that is shown in the balance sheet: what is the year end FY2018 net PPNE for 3M? Answer in USD billions.",
+  "gold": "$8.70",
+  "justification": "The metric ppne, net was directly extracted from the company 10K. The line item name, as seen in the 10K, was: Property, plant and equipment â net.",
+  "answer": "The provided context does not contain the answer. The available documents include 3M's investment portfolio tables for equities, fixed income, and private equity alongside average equity and debt calculations for FY2018, but they do not list a metric labeled \"net PPNE\" or specific pension plan net asset values for the year ending December 31, 2018. [3M_2018_10K p.98][3M_2018_10K p.45]"
+ },
+ {
+  "key": "agent|financebench_id_04660",
+  "question_type": "metrics-generated",
+  "question": "Considering the data in the balance sheet, what is Block's (formerly known as Square) FY2016 working capital ratio? Define working capital ratio as total current assets divided by total current liabilities. Round your answer to two decimal places.",
+  "gold": "1.73",
+  "justification": "The metric in question was calculated using other simpler metrics. The various simpler metrics (from the current and, if relevant, previous fiscal year(s)) used were:\n\nMetric 1: Total current liabilities. This metric was located in the 10K as a single line item named: Total current liabilities.\n\nMetric 2: Total current assets. This metric was located in the 10K as a single line item named: Total current assets.",
+  "answer": "1.73"
+ },
+ {
+  "key": "agent|financebench_id_00757",
+  "question_type": "novel-generated",
+  "question": "Did AMD report customer concentration in FY22?",
+  "gold": "Yes, one customer accounted for 16% of consolidated net revenue",
+  "justification": "One customer ccounting for 16% of net evenue is a high customer concenration",
+  "answer": "Yes, AMD reported customer concentration in FY22. One customer accounted for 16% of consolidated net revenue for the year ended December 31, 2022, with a loss of this customer having a material adverse effect on the business."
+ },
+ {
+  "key": "agent|financebench_id_00746",
+  "question_type": "domain-relevant",
+  "question": "Which debt securities are registered to trade on a national securities exchange under Ulta Beauty's name as of FY2023?",
+  "gold": "There are none",
+  "justification": "No debt securities listed under securities registered pursuant to Section 12(b) of the Act.",
+  "answer": "There are no debt securities registered to trade on a national securities exchange under Ulta Beauty's name as of FY2023."
+ },
+ {
+  "key": "agent|financebench_id_00215",
+  "question_type": "domain-relevant",
+  "question": "Is Verizon a capital intensive business based on FY 2022 data?",
+  "gold": "Yes. Verizon's capital intensity ratio was approximately 2.774729. This means that it took approximately $2.77 of assets to generate $1 of revenue and thus, Verizon can be considered capital intensive.",
+  "justification": "capital intensity ratio = total asset / revenue = 379680/ 136835 = 2.774729, which is relatively high",
+  "answer": "Yes, Verizon is a capital intensive business based on FY 2022 data.\n\nCalculation:\n- Capital Expenditures: $23,087 million (from Cash Flows)\n- Operating Revenues: $136,835 million \n- Total Assets: $379,680 million\n\nCapEx-to-Revenue ratio = 23,087 / 136,835 * 100 = 16.9%\nCapEx-to-Total Assets ratio = 23,087 / 379,680 * 100 = 6.1%\n\nThese ratios indicate Verizon invests approximately 16.9% of annual revenue and 6.1% of total assets into capital expenditures, characteristic of a capital-intensive telecommunications business."
+ },
+ {
+  "key": "baseline|financebench_id_06247",
+  "question_type": "metrics-generated",
+  "question": "What is FY2018 days payable outstanding (DPO) for Walmart? DPO is defined as: 365 * (average accounts payable between FY2017 and FY2018) / (FY2018 COGS + change in inventory between FY2017 and FY2018). Round your answer to two decimal places. Please base your judgments on the information provided primarily in the statement of financial position and the P&L statement.",
+  "gold": "42.69",
+  "justification": "The metric in question was calculated using other simpler metrics. The various simpler metrics (from the current and, if relevant, previous fiscal year(s)) used were:\n\nMetric 1: Accounts payable. This metric was located in the 10K as a single line item named: Accounts payable.\n\nMetric 2: Inventories. This metric was located in the 10K as a single line item named: Inventories.\n\nMetric 3: Cost of goods sold. This metric was located in the 10K as a single line item named: Cost of sales.",
+  "answer": "The provided context does not contain the answer. None of the excerpts from the 2018, 2019, or 2020 Walmart 10-K filings include the Balance Sheet data required for Accounts Payable and Inventory, nor the Income Statement data required for Cost of Goods Sold to calculate Days Payable Outstanding."
+ },
+ {
+  "key": "baseline|financebench_id_01319",
+  "question_type": "domain-relevant",
+  "question": "What is the quantity of restructuring costs directly outlined in AES Corporation's income statements for FY2022? If restructuring costs are not explicitly outlined then state 0.",
+  "gold": "0",
+  "justification": "",
+  "answer": "0\nThe Consolidated Statements of Operations for FY2022 does not contain a specific line item explicitly labeled as restructuring costs. The provided income statement lists expenses such as \"Loss on extinguishment of debt,\" \"Other non-operating expense,\" and various impairments, but no distinct restructuring charge is outlined. [AES_2022_10K p.132]"
+ },
+ {
+  "key": "agent|financebench_id_04417",
+  "question_type": "metrics-generated",
+  "question": "What is the year end FY2019 total amount of inventories for Best Buy? Answer in USD millions. Base your judgments on the information provided primarily in the balance sheet.",
+  "gold": "$5409.00",
+  "justification": "The metric inventories was directly extracted from the company 10K. The line item name, as seen in the 10K, was: Merchandise inventories.",
+  "answer": "5,409"
+ },
+ {
+  "key": "baseline|financebench_id_00215",
+  "question_type": "domain-relevant",
+  "question": "Is Verizon a capital intensive business based on FY 2022 data?",
+  "gold": "Yes. Verizon's capital intensity ratio was approximately 2.774729. This means that it took approximately $2.77 of assets to generate $1 of revenue and thus, Verizon can be considered capital intensive.",
+  "justification": "capital intensity ratio = total asset / revenue = 379680/ 136835 = 2.774729, which is relatively high",
+  "answer": "Yes, Verizon is a capital intensive business based on FY 2022 data. The company invested $23.1 billion in capital expenditures during 2022, primarily to expand its wireless networks and high-speed fiber to increase operating efficiency and productivity. [VERIZON_2022_10K p.39]"
+ },
+ {
+  "key": "agent|financebench_id_00882",
+  "question_type": "novel-generated",
+  "question": "As of May 26, 2023, what is the total amount Pepsico may borrow under its unsecured revolving credit agreements?",
+  "gold": "Total amount Pepsico may borrow under unsecured revolving credit agreements = $8,400,000,000.",
+  "justification": "Total amount that may be borrowed under unsecured revolving credit agreements = 2023, 364 day unsecured revolving credit agreement amount of $4,200,000,000 + 2023, five year unsecured revolving credit agreement amount of $4,200,000,000 = $8,400,000,000.",
+  "answer": "$4,200,000,000"
+ },
+ {
+  "key": "baseline|financebench_id_00222",
+  "question_type": "domain-relevant",
+  "question": "Does AMD have a reasonably healthy liquidity profile based on its quick ratio for FY22? If the quick ratio is not relevant to measure liquidity, please state that and explain why.",
+  "gold": "Yes. The quick ratio is 1.57, calculated as (cash and cash equivalents+Short term investments+Accounts receivable, net+receivables from related parties)/ (current liabilities).",
+  "justification": "",
+  "answer": "The provided context does not state whether AMD has a reasonably healthy liquidity profile based on its quick ratio for FY22. While the annual report discusses cash balances, debt obligations, and operating cash flows as indicators of liquidity (AMD_2022_10K p.51), the specific quick ratio metric is not disclosed or calculable from the provided text."
+ },
+ {
+  "key": "baseline|financebench_id_04254",
+  "question_type": "metrics-generated",
+  "question": "Basing your judgments off of the cash flow statement and the income statement, what is American Water Works's FY2021 unadjusted operating income + depreciation and amortization from the cash flow statement (unadjusted EBITDA) in USD millions?",
+  "gold": "$1832.00",
+  "justification": "The metric in question was calculated using other simpler metrics. The various simpler metrics (from the current and, if relevant, previous fiscal year(s)) used were:\n\nMetric 1: Depreciation and amortization. This metric was located in the 10K as a single line item named: Depreciation and amortization.\n\nMetric 2: Unadjusted operating income. This metric was located in the 10K as a single line item named: Operating income.",
+  "answer": ""
+ },
+ {
+  "key": "baseline|financebench_id_01482",
+  "question_type": "novel-generated",
+  "question": "At the Pepsico AGM held on May 3, 2023, what was the outcome of the shareholder vote on the shareholder proposal for a congruency report by Pepsico on net-zero emissions policies?",
+  "gold": "The shareholder proposal for a congruency report by Pepsico on net-zero emissions policies was defeated.",
+  "justification": "",
+  "answer": "Defeated. According to section (8) of the PepsiCo 8-K current report filed on May 5, 2023, the shareholder proposal regarding a congruency report on net-zero emissions policies was defeated. [PEPSICO_2023_8K_dated-2023-05-05 p.4]"
+ },
+ {
+  "key": "baseline|financebench_id_00723",
+  "question_type": "domain-relevant",
+  "question": "Does AMEX have an improving operating margin profile as of 2022? If operating margin is not a useful metric for a company like this, then state that and explain why.",
+  "gold": "Performance is not measured through operating margin",
+  "justification": "It's a financial services company and performance is measured through the Net Interest Margin.",
+  "answer": "The provided context does not explicitly state whether AMEX has an improving operating margin profile. While documents indicate that total revenues net of interest expense increased 25 percent year-over-year and operating expenses increased 24 percent year-over-year [AMERICANEXPRESS_2022_10K p.45], the text does not confirm the operating margin specifically, noting instead that net income decreased due to Amex Ventures strategic investment losses [AMERICANEXPRESS_2022_10K p.45]."
+ },
+ {
+  "key": "agent|financebench_id_01290",
+  "question_type": "domain-relevant",
+  "question": "Who are the primary customers of Boeing as of FY2022?",
+  "gold": "Boeing's primary customers as of FY2022 are a limited number of commercial airlines and the US government. The US government accounted for 40% of Boeing's total revenues in FY2022.",
+  "justification": "",
+  "answer": "The SEC filings do not disclose specific named primary customers for Boeing's commercial airline business. The only major customer explicitly identified is the U.S. government (approximately 40% of consolidated revenues in FY2022). Commercial airline customers are discussed at an aggregate level by geographic region but not by individual customer name."
+ },
+ {
+  "key": "agent|financebench_id_01163",
+  "question_type": "domain-relevant",
+  "question": "Among operations, investing, and financing activities, which brought in the most (or lost the least) cash flow for Nike in FY2023?",
+  "gold": "Among the three, cash flow from operations was the highest for Nike in FY2023.",
+  "justification": "",
+  "answer": "Operating cash flow"
+ },
+ {
+  "key": "baseline|financebench_id_01865",
+  "question_type": "novel-generated",
+  "question": "If we exclude the impact of M&A, which segment has dragged down 3M's overall growth in 2022?",
+  "gold": "The consumer segment shrunk by 0.9% organically.",
+  "justification": "",
+  "answer": "The provided context does not contain the answer. The documents focus on 2023 quarterly results and discuss M&A impacts in 2023 (e.g., Aearo Entities) without explicitly stating which specific segment dragged down overall growth in 2022 when excluding M&A, aside from noting Health Care spin-off intentions in 2022."
+ },
+ {
+  "key": "agent|financebench_id_00807",
+  "question_type": "domain-relevant",
+  "question": "Does 3M have a reasonably healthy liquidity profile based on its quick ratio for Q2 of FY2023? If the quick ratio is not relevant to measure liquidity, please state that and explain why.",
+  "gold": "No. The quick ratio for 3M was 0.96 by Jun'23 close, which needs a bit of an improvement to touch the 1x mark",
+  "justification": "Quick Ratio= (Total current assets-Total inventories)/Total current liabilities\n(15,754-5,280)/10,936",
+  "answer": "3M's quick ratio for Q2 FY2023 is approximately 0.85, indicating moderate-to-healthy short-term liquidity. However, the quick ratio is not directly presented in the filings; it must be calculated from the balance sheet."
+ }
+]

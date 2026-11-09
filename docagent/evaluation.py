@@ -37,7 +37,9 @@ JUDGE_MAX_TOKENS = 5000        # with the 8k judge context: prompts are <= ~3k t
 def build_system(name: str):
     from docagent.agent.llm import agent_kwargs, make_llm
     from docagent.retrieval.service import load_index
-    index = load_index()
+    # the baseline only uses the stored chunk vectors (its query embedder is LangChain's,
+    # on CPU), so its copy of the index keeps the retrieval models off the GPU
+    index = load_index(device="cpu" if name == "baseline" else None)
     if name == "agent":
         from docagent.agent.graph import DocAgent
         from docagent.data import load_docs
@@ -298,14 +300,34 @@ def report() -> None:
                   f"DocAgent correct where the baseline is not: {n10}; the reverse: {n01}. "
                   f"Exact McNemar test p = {p:.2g}. Accuracy difference {a.mean() - b.mean():+.1%} "
                   f"(95% bootstrap CI {lo:+.1%} to {hi:+.1%})."]
-        blocked = [systems["agent"][i] for i in common if systems["agent"][i].get("unverified_answer")
-                   and "judge" in systems["agent"][i] and "grade_unverified" in systems["agent"][i]["judge"]]
-        if blocked:
-            wrong = sum(r["judge"]["grade_unverified"]["label"] != "correct" for r in blocked)
-            out["guardrail_blocked"] = {"n": len(blocked), "would_have_been_wrong_or_refusal": wrong}
-            lines += ["\n## Guardrails\n",
-                      f"Answers withheld by the citation/number guardrails: {len(blocked)}. Graded anyway, "
-                      f"{wrong} of them would not have been correct."]
+        withheld = [systems["agent"][i] for i in common if systems["agent"][i].get("unverified_answer")
+                    and "judge" in systems["agent"][i] and "grade_unverified" in systems["agent"][i]["judge"]]
+        if withheld:
+            # guardrail-blocked = failed verification after the retries; the rest the agent itself
+            # flagged as insufficient evidence while still drafting an answer
+            kinds = {"blocked by the guardrails": [r for r in withheld if r["guardrail"]["issues"]],
+                     "flagged by the agent as insufficient evidence": [r for r in withheld if not r["guardrail"]["issues"]]}
+            gw = {}
+            for k, rs in kinds.items():
+                labs = [r["judge"]["grade_unverified"]["label"] for r in rs]
+                gw[k] = {"n": len(rs), "would_be_correct": labs.count("correct"),
+                         "would_be_incorrect": labs.count("incorrect"), "would_be_refusal": labs.count("refusal")}
+            lab = lambda r, key: r.get("judge", {}).get(key, {}).get("label")
+            alt = [lab(systems["agent"][i], "grade_unverified") or lab(systems["agent"][i], "grade") for i in common]
+            g = gw["blocked by the guardrails"]
+            out["guardrail_blocked"] = {"n": len(withheld), "kinds": gw,
+                                        "would_have_been_wrong_or_refusal": sum(lab(r, "grade_unverified") != "correct"
+                                                                                for r in withheld),
+                                        "accuracy_without_withholding": alt.count("correct") / len(common),
+                                        "incorrect_without_withholding": alt.count("incorrect")}
+            lines += ["\n## Guardrails\n"] + [
+                f"Withheld answers {k}: {v['n']}. Graded anyway: {v['would_be_correct']} would have been correct, "
+                f"{v['would_be_incorrect']} incorrect, {v['would_be_refusal']} non-answers." for k, v in gw.items()] + [
+                f"If every withheld draft had been returned instead: accuracy {alt.count('correct') / len(common):.1%} "
+                f"with {alt.count('incorrect')} incorrect answers, versus "
+                f"{out['agent|all']['accuracy']:.1%} with {out['agent|all']['incorrect']} as deployed "
+                f"(the guardrails cost {g['would_be_correct']} correct answers and prevented {g['would_be_incorrect']} "
+                f"incorrect ones)."]
     lines += ["\n## Generation health\n"] + [
         f"{s}: {h['llm_calls']} LLM calls, {h['hit_token_limit']} stopped at the token limit, "
         f"{h['resampled']} re-sampled after a runaway generation, {h['results_shortened']} old tool results "

@@ -1,0 +1,162 @@
+{
+ "agent|financebench_id_00215": {
+  "label": "correct",
+  "note": "Yes; different intensity metric but correct figures and conclusion"
+ },
+ "agent|financebench_id_00460": {
+  "label": "incorrect",
+  "note": "store counts wrong/swapped (982 vs 977) vs gold 982 -> 969"
+ },
+ "agent|financebench_id_00494": {
+  "label": "incorrect",
+  "note": "only a 5/month rate (787, unnamed); misses 737 and 777X increases"
+ },
+ "agent|financebench_id_00563": {
+  "label": "correct",
+  "note": "Data Center"
+ },
+ "agent|financebench_id_00746": {
+  "label": "correct",
+  "note": "none, as gold"
+ },
+ "agent|financebench_id_00757": {
+  "label": "correct",
+  "note": "16% customer, as gold"
+ },
+ "agent|financebench_id_00807": {
+  "label": "incorrect",
+  "note": "0.85 vs gold 0.96 and calls liquidity healthy vs gold No"
+ },
+ "agent|financebench_id_00882": {
+  "label": "incorrect",
+  "note": "$4.2B vs gold $8.4B (two $4.2B facilities)"
+ },
+ "agent|financebench_id_01163": {
+  "label": "correct",
+  "note": "operations, as gold"
+ },
+ "agent|financebench_id_01226": {
+  "label": "incorrect",
+  "note": "borderline: margin 20.8%->19.1% and cost drivers match, but claims the $2,724M divestiture gain reduced operating income (wrong direction); misses Combat Arms/Russia charges"
+ },
+ "agent|financebench_id_01279": {
+  "label": "incorrect",
+  "note": "investing vs gold operations"
+ },
+ "agent|financebench_id_01290": {
+  "label": "correct",
+  "note": "borderline: names US government (40%) and commercial airline customers, framed as no named airlines disclosed"
+ },
+ "agent|financebench_id_02419": {
+  "label": "incorrect",
+  "note": "No vs gold Yes"
+ },
+ "agent|financebench_id_03856": {
+  "label": "correct",
+  "note": "0.83"
+ },
+ "agent|financebench_id_04254": {
+  "label": "correct",
+  "note": "1832"
+ },
+ "agent|financebench_id_04417": {
+  "label": "correct",
+  "note": "5,409"
+ },
+ "agent|financebench_id_04660": {
+  "label": "correct",
+  "note": "1.73"
+ },
+ "agent|financebench_id_05718": {
+  "label": "correct",
+  "note": "borderline: 0.389bn is the reported $389M; gold $0.40 is its rounding (2.8% off at the gold's written precision)"
+ },
+ "agent|financebench_id_06247": {
+  "label": "correct",
+  "note": "42.69"
+ },
+ "agent|financebench_id_07661": {
+  "label": "correct",
+  "note": "381.6 rounds to 382"
+ },
+ "baseline|financebench_id_00215": {
+  "label": "correct",
+  "note": "Yes, with correct capex figure; conclusion as gold"
+ },
+ "baseline|financebench_id_00222": {
+  "label": "refusal",
+  "note": "says quick ratio not disclosed or calculable"
+ },
+ "baseline|financebench_id_00601": {
+  "label": "correct",
+  "note": "lower marketing + incentive-compensation leverage, as gold"
+ },
+ "baseline|financebench_id_00606": {
+  "label": "refusal",
+  "note": "context does not contain the answer"
+ },
+ "baseline|financebench_id_00711": {
+  "label": "refusal",
+  "note": "insufficient information to calculate"
+ },
+ "baseline|financebench_id_00723": {
+  "label": "refusal",
+  "note": "does not commit; does not say operating margin is the wrong metric"
+ },
+ "baseline|financebench_id_00995": {
+  "label": "correct",
+  "note": "lists the gold's product families (semi-custom SoCs not named)"
+ },
+ "baseline|financebench_id_01275": {
+  "label": "correct",
+  "note": "operating activities $1,824M"
+ },
+ "baseline|financebench_id_01319": {
+  "label": "correct",
+  "note": "0"
+ },
+ "baseline|financebench_id_01482": {
+  "label": "correct",
+  "note": "defeated"
+ },
+ "baseline|financebench_id_01487": {
+  "label": "correct",
+  "note": "Yes; earnings grew faster than sales (6.9% vs 6.3%)"
+ },
+ "baseline|financebench_id_01491": {
+  "label": "correct",
+  "note": "$13.2 billion"
+ },
+ "baseline|financebench_id_01865": {
+  "label": "refusal",
+  "note": "context does not contain the answer"
+ },
+ "baseline|financebench_id_03282": {
+  "label": "correct",
+  "note": "$5,466.3M"
+ },
+ "baseline|financebench_id_04254": {
+  "label": "refusal",
+  "note": "empty response (runaway generation)"
+ },
+ "baseline|financebench_id_04412": {
+  "label": "refusal",
+  "note": "cannot be determined"
+ },
+ "baseline|financebench_id_04672": {
+  "label": "refusal",
+  "note": "context does not contain the answer"
+ },
+ "baseline|financebench_id_06247": {
+  "label": "refusal",
+  "note": "context does not contain the answer"
+ },
+ "baseline|financebench_id_07507": {
+  "label": "refusal",
+  "note": "insufficient information"
+ },
+ "baseline|financebench_id_07661": {
+  "label": "correct",
+  "note": "$381.6M rounds to 382"
+ }
+}
